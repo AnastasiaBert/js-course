@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 6</title>
+</head>
+<body>
+    <h1>Задача 6</h1>
+    <p>З клавіатури вводиться вартість товару та кількість одиниць 3 товарів. Обчислити вартість 
+        кожного товару окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.</p>
+    <script>
+        //1. Вводимо необхідні дані
+        let firstProductPrice = parseFloat(prompt('Введіть вартість першого товару:', 0))
+        let firstProductNumber = parseInt(prompt('Введіть кількість першого товару:', 0)) 
+        let secondProductPrice = parseFloat(prompt('Введіть вартість другого товару:', 0))
+        let secondProductNumber = parseInt(prompt('Введіть кількість другого товару:', 0)) 
+        let thirdProductPrice = parseFloat(prompt('Введіть вартість третого товару:', 0))
+        let thirdProductNumber = parseInt(prompt('Введіть кількість третього товару:', 0)) 
+
+        //2. Знаходимо результат
+        let firstTotalProductPrice = parseFloat(firstProductPrice * firstProductNumber)
+        let secondTotalProductPrice = parseFloat(secondProductNumber * secondProductPrice)
+        let thirdTotalProductPrice = parseFloat(thirdProductNumber * thirdProductPrice)
+        let totalPrice = parseFloat(firstTotalProductPrice + secondTotalProductPrice + thirdTotalProductPrice)
+
+        //3. Виводимо результат
+        document.write(`
+        <table border="2px">
+            <tr border="3px solid">
+                <th>Вартість товару(грн)</th>
+                <th>Кількість(шт.)</th>
+                <th>Вартість(грн)</th>
+            </tr>
+            <tr border="1px">
+                <th>${firstProductPrice}</th>
+                <th>${firstProductNumber}</th>
+                <th>Вартість: ${firstTotalProductPrice}</th>
+            </tr>
+            <tr border="1px">
+                <th>${secondProductPrice}</th>
+                <th>${secondProductNumber}</th>
+                <th>Вартість: ${secondTotalProductPrice}</th>
+            </tr>
+            <tr border="1px">
+                <th>${thirdProductPrice}</th>
+                <th>${thirdProductNumber}</th>
+                <th>Вартість: ${thirdTotalProductPrice}</th>
+            </tr>
+            <h3>Загальна вартість: ${totalPrice} грн</h3>
+        </table>
+        `)
+    </script>
+</body>
+</html>
