@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 6</title>
+</head>
+<body>
+    <h1>Задача 6</h1>
+    <p>З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.</p>
+    <script>
+        //1. Вводимо необхідні дані
+        let dayNumber = parseInt(prompt('Введіть номер дня тижня'));
+        const firstDayName = 'Понеділок';
+        const secondDayName = 'Вівторок';
+        const thirdDayName = 'Середа';
+        const fourthDayName = 'Четвер';
+        const fifthDayName = 'П`ятниця';
+        const sixthDayName = 'Субота';
+        const seventhDayName = 'Неділя';
+        const firstDay = 1;
+        const secondDay = 2;
+        const thirdDay = 3;
+        const fourthDay = 4;
+        const fifthDay = 5;
+        const sixthDay = 6;
+        const seventhDay = 7;
+
+        //2. Знаходимо і виводимо результат
+    switch (dayNumber) {
+        case firstDay:
+               document.write(`${firstDayName}`)
+               break;
+            case secondDay:
+               document.write(`${secondDayName}`)
+               break;
+            case thirdDay:
+               document.write(`${thirdDayName}`)
+               break;
+            case fourthDay:
+               document.write(`${fourthDayName}`)
+               break;
+            case fifthDay:
+                document.write(`${fifthDayName}`)
+                break;
+            case sixthDay:
+                document.write(`${sixthDayName}`)
+                break;
+            case seventhDay:
+                document.write(`${seventhDayName}`)
+                break;
+        default:
+            document.write(`Unknown day`)
+        break;
+    }
+    </script>
+</body>
+</html>
