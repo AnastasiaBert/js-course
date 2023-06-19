@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 18</title>
+</head>
+<body>
+    <h1>Задача 18</h1>
+    <p>Користувач поступово вводить прибуток магазину за кожен день(7) протягом N(2) тижнів. Знайти загальну величину прибутку та вивести величину 
+        прибутку протягом кожного окремого тижня.
+    </p>
+    <script>
+        //1. Вводимо неохідні дані
+        let dayIncome 
+        let totalSum = 0
+        // 2. Робимо обчислення 
+        for (let weeks = 1; weeks <= 2; weeks++) {
+            for (let days = 1; days <= 7; days++) {
+              dayIncome = parseFloat(prompt(`Введіть прибуток за ${days} день`))
+              totalSum += dayIncome
+            }    
+            document.write(`За тиждень ${weeks} ви заробили ${totalSum}<br>`)
+        } 
+        // 3. Виводимо результат
+        document.write(`Загальна сума: ${totalSum}`)
+
+    </script>
+</body>
+</html>

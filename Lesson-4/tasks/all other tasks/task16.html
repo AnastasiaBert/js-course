@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 16</title>
+</head>
+<body>
+    <h1>Задача 16</h1>
+    <p> Каса. Користувачу повідомляють суму, яку йому треба сплатити. Користувач поступово вводить суму грошей до тих пір, 
+        поки суми не буде достатньо для оплати товарів (кожного разу користувачу повідомляють, яку ще суму потрібно ввести). </p>
+    <script>
+        // 1. Виводимо необхідні дані
+        const min = 1
+        const max = 1000
+        const randomNumber = min + Math.floor(Math.random()*(max-min+1))
+        const message = alert(`Вам потрібно сплатити ${randomNumber} грн`)
+        let sum = 0
+        // 2. Робимо обчислення 
+        do {
+            let payment = prompt('Введіть суму, яку хочете сплатити')
+            sum += payment
+            let stillNeedToPay = randomNumber - sum;
+            if (sum < randomNumber) {
+                let paymentMessage = alert(`Ще потрібно заплатити ${stillNeedToPay}`)
+            } 
+        } while (sum <= randomNumber) 
+        // 3. Виводимо результат
+        document.write(`Дякуємо за покупку!`)
+    </script>
+</body>
+</html>

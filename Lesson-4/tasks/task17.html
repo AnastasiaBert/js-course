@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 17</title>
+</head>
+<body>
+    <h1>Задача 17</h1>
+    <p>Користувач поступово вводить показники температури протягом року. Знайти середню температуру.</p>
+    <script>
+        // 1. Вводимо необхідні дані
+        let monthesTemperature
+        let sum = 0
+        //2. Робимо обчислення і виводимо результат
+        for (let i = 0; i < 1; i++) {
+            for (let monthes = 1; monthes <= 12; monthes++) {
+                monthesTemperature = parseInt(prompt(`Введіть середню температуру ${monthes} місяця`))   
+                sum += monthesTemperature; 
+            } 
+            let averageTemperature = parseInt(sum / 12) 
+        // 3. Виводимо результат
+            document.write(`Середня температура за рік ${averageTemperature} градусів`)
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 15</title>
+</head>
+<body>
+    <h1>Задача 15</h1>
+    <p>Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. Маючи К снарядів користувач 
+       намагається потопити корабель. 
+    </p>
+    <script>
+        //1. Вводимо необхідні дані
+        let N = 1
+        let M = 25
+        let shipPosition = N + Math.floor(Math.random()*(M-N+1))
+        let userAttempt
+        let weaponsNumber = parseInt(prompt('Кількість снарядів, якою ви хочете спробувати потопити корабель'))
+        alert(` Позиція корабля: :)${shipPosition}`)
+        //2. Робимо обчислення і виводимо результат
+        do {
+            userAttempt = parseInt(prompt('Виберіть положення корабля')) 
+            if(userAttempt === shipPosition) {
+                alert('Пряме попадання!')
+                break;
+            } else {
+                weaponsNumber--
+                alert(` У вас залишилось ${weaponsNumber} снаряд(и)`)
+            }
+        } while (weaponsNumber > 0);
+        if (weaponsNumber === 0) {
+            alert('У вас закінчились снаряди!')
+        }
+/*
+        let N = 1
+        let M = 25
+        let shipPosition = N + Math.floor(Math.random()*(M-N+1))
+        let userAttempt
+        for (let K = 0; K <= 4; K++) {
+            userAttempt = parseInt(prompt('Choose the ship`s position')) 
+            if(userAttempt === shipPosition) {
+                alert('Wow!')
+                break;
+            } else {
+                alert('Try again!')
+            }
+        }
+*/
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Задача 13</h1>
+    <p>Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами.</p>
+    <script>   
+    // 1. Вводимо необхідні дані
+    let minUserNumber = parseInt(prompt('Введіть мінімальне число'))
+    let maxUserNumber = parseInt(prompt('Введіть максимальне число'))
+    let oddSum = 0;
+    //2. Робимо обчислення
+    for (let number = minUserNumber; number <= maxUserNumber; number++) {
+      if (number % 2 !== 0) {
+        oddSum += number;
+        }
+      }
+    //3. Виводимо результат
+      document.write(`Сума непарних чисел між ${minUserNumber} і ${maxUserNumber}: ${oddSum}<br>`)
+    </script>
+</body>
+</html>

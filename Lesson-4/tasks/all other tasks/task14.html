@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 14</title>
+</head>
+<body>
+    <h1></h1>
+    <p>Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. 
+        Вибір у кожній позиції вибирається як одне з чотирьох зображень. 
+        Вивести ці зображення і повідомити виграш користувача (три перших зображення 100 грн, 
+        три других – 200, три третіх – 500, три четвертих зображення – 1000грн). Використати цикли
+         і switch (для вибору зображення за номером).</p>
+    <script>
+
+  const images = ["lemon", "orange", "berry", "apple"];
+  let isWinning = false;
+  let randomImage
+
+while (!isWinning) {
+  let chosenImages = [];
+  
+  for (let i = 0; i < 3; i++) {
+    randomImage = Math.floor(Math.random() * images.length);
+    chosenImages.push(images[randomImage]);
+    
+  }
+  
+  switch (chosenImages[0]) {
+    case chosenImages[1]:
+      if (chosenImages[1] === chosenImages[2]) {
+        isWinning = true;
+        alert('100$')
+      }
+      break;
+    default:
+    
+      alert('Try again!')
+      break;
+  }
+}
+
+alert("You win!");
+
+
+/*
+       let randomImage
+        let bingoMessage
+        const min = 1
+        const max = 4
+        let randomNumber = min + Math.floor(Math.random()*(max-min+1))
+        for (var i = 0; i < 3; i++) {
+    var randomIndex = Math.floor(Math.random() * pictures.length);
+    selectedPictures.push(pictures[randomIndex]);
+  }
+  
+        for (let chooseRandomImage = 1; chooseRandomPosition <= 3; chooseRandomImage++) {
+          
+        switch (randomNumber) {
+            case 1: randomImage = <img src='images/lemon.png'/>
+                
+                break;
+            case 2: randomImage = <img src='images/orange.png'/>
+                
+                break;
+            case 3: randomImage = <img src='images/berry.png'/>
+
+                break;
+            case 4: randomImage = <img src='images/apple.png'/>
+                
+                break;
+            default:
+                break;
+        }
+    }
+    
+*/
+
+    </script>
+</body>
+</html>

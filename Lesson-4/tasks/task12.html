@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 12</title>
+</head>
+<body>
+    <h3>Задача 12</h3>
+   <p> Користувач загадує число. Комп’ютер задає питання, поки не вгадає число користувача (використати confirm).</p>
+   <script>
+   // 1. Вводимо необхідні дані
+    let userNumber = parseInt(prompt('Введіть число від 1 до 10'))
+    let computerNumber
+
+    // 2. Робимо обчислення і виводимо результат
+    while (userNumber !== computerNumber) {
+        let min = 1
+        let max = 10
+        computerNumber = min + Math.floor(Math.random()*(max-min+1)) 
+        confirm(`Is your number ${computerNumber}?`)
+        if (userNumber === computerNumber) {
+            alert('Wow')
+        } else {
+            alert('Try again!')
+        }
+    }
+   </script>
+</body>
+</html>
