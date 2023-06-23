@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+    <h1>Задача 2</h1>
+    <p>Написати програму, що виводить на екран таблицю множення на k (k вводиться з клавіатури).</p>
+    <script>   
+    // 1. Вводимо необхідні дані
+    let userNumber = parseInt(prompt('Введіть, яку таблицю множення хочете вивести'))
+   
+    //2. Робимо обчислення і виводимо результат
+    for (let i = 1; i <= 9; i++) {
+      let result = i * userNumber
+      document.write(`${i} * ${userNumber} = ${result}<br>`)
+    }
+    </script>
+</body>
+</html>

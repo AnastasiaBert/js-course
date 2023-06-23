@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+    <h1>Задача 3</h1>
+    <p> З клавіатури вводяться n чисел та саме значення n. 
+        Написати програму, яка підраховує кількість від’ємних, додатних та нульових чисел серед введених. 
+    </p>
+    <script>
+        //1. Вводимо необхідні дані
+        let countNumbers = parseInt(prompt('Введіть кількість чисел'))
+        let countPositiveNumbers = 0
+        let countNegativeNumbers = 0
+        let countZeroNumbers = 0
+
+        //2. Робимо обчислення 
+        for (let i = 1; i <= countNumbers; i++) {
+        let userNumber = parseInt(prompt(`Введіть ${i} число`))
+            if (userNumber > 0){
+                countPositiveNumbers++
+            } else if (userNumber < 0){
+                countNegativeNumbers++ 
+            } else {
+                countZeroNumbers++
+            }
+        }
+
+        //3. Виводимо результат
+        document.write(`Число 0: ${countZeroNumbers}<br>
+            Число від'ємних чисел: ${countNegativeNumbers}<br>
+            Число додатніх чисел: ${countPositiveNumbers}`)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 5</title>
+</head>
+<body>
+    <h1>Задача 5</h1>
+    <p> З клавіатури вводиться число. Знаходити суму цифр до тих пір. Поки сума не стане більшою за 20.
+    </p>
+    <script>
+        //1. Виконуємо завдання
+        let sum = 0
+        while (sum <= 20) {
+            let userNumber = parseInt(prompt('Введіть число, яке хочете додати.'))
+            sum += userNumber
+            alert(`Сума всіх ваших введених чисел = ${sum}`)
+        }
+
+         /*
+        let sum = 0
+        //1. Вводимо неохідні дані
+        for (let i = 0; ; i++) {       
+            let userNumber = parseInt(prompt('number'))
+            sum += userNumber
+            alert(`${sum}`)
+            if (sum > 20) {
+                break
+            }
+        }
+        */
+    </script>
+</body>
+</html>
