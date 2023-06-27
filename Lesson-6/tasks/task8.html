@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 8</title>
+</head>
+<body>
+    <h1>Задача 8</h1>
+    <p> Створити функцію, яка випадковим чином виводить на екран одне із
+        4 зображень (шляхи до зображень передаються у функцію)
+    </p>
+    <script>
+        //1. Виконуємо завдання
+        //тут якісь проблеми з отриманням зображень :( 
+        let appleImage = 'images/apple.png'
+        let cherryImage = 'images/berry.png'
+        let lemonImage = 'images/lemon.png'
+        let orangeImage = 'images/orange.png'
+		
+      function randomImage(appleImage, cherryImage, lemonImage, orangeImage) {
+        let randomImage = 1 + Math.floor(Math.random()*(4-1+1))
+        let chosenImage
+        switch (randomImage) {
+				case 1:
+					chosenImage = appleImage
+					break
+				case 2:
+					chosenImage = cherryImage
+					break
+				case 3:
+					chosenImage = lemonImage
+					break
+				case 4:
+					chosenImage = orangeImage
+					break
+			}  
+        return document.write(`<img src='${chosenImage}'>`)
+      }
+      
+      randomImage()
+    </script>
+</body>
+</html>

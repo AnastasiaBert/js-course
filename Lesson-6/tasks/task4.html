@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 4</title>
+</head>
+<body>
+    <h1>Задача 4</h1>
+    <p> Створити окремі функції, які для 4 чисел знаходять:
+        1.суму;
+        2.добуток;
+        3.середнє арифметичне;
+        4.мінімальне значення.       
+        </p>
+    <script>
+      let num1 = parseInt(prompt('num1'))
+      let num2 = parseInt(prompt('num2'))
+      let num3 = parseInt(prompt('num3'))
+      let num4 = parseInt(prompt('num4'))
+
+      function sumNums(num1, num2, num3, num4) {
+        let sum = num1 + num2 + num3 + num4
+        return sum
+      }
+      function multiplyNums(num1, num2, num3, num4) {
+        let multiply = num1 * num2 * num3 * num4
+        return multiply
+      }
+      function averageOfNums(num1, num2, num3, num4) {
+          let average = ((num1 + num2 + num3 + num4) / 4)
+          return average
+      }
+      function minNum(num1, num2, num3, num4) {
+          let min 
+          if (num1 < num2 && num1 < num3 && num1 < num4) {
+            min = num1
+          } else if (num2 < num1 && num2 < num3 && num2 < num4) {
+            min = num2
+          } else if (num3 < num1 && num3 < num2 && num3 < num4) {
+            min = num3
+          } else if (num4 < num1 && num4 < num2 && num4 < num3) {
+            min = num4
+          }
+          return min
+      }
+
+      alert(sumNums(num1, num2, num3, num4))
+      alert(multiplyNums(num1, num2, num3, num4))
+      alert(averageOfNums(num1, num2, num3, num4))
+      alert(minNum(num1, num2, num3, num4))
+
+    </script>
+    
+</body>
+</html>

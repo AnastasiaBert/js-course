@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 7</title>
+</head>
+<body>
+    <h1>Задача 7</h1>
+    <p> Створити функцію, яка створює таблицю з вказаною кількістю рядків 
+        і стовпців (таблиця заповнюється заданим фіксованим повідомленням).
+    </p>
+    <script>
+        //1. Виконуємо завдання
+        let rowsNumber = parseInt(prompt('rows'))
+        let colomnsNumber = parseInt(prompt('columns'))
+       
+      function tableCreation(rows, columns) {
+            document.write('<table border="2px">')
+                for (let i = 1; i <= rows; i++) {
+                  document.write('<tr>')
+                  for (let j = 1; j <= colomnsNumber; j++) {
+                    document.write(`<td> message </td>`)
+                  }
+                  document.write('</tr>')
+                }
+            document.write('</table>')
+        }
+
+     tableCreation(rowsNumber, colomnsNumber)
+    </script>
+</body>
+</html>

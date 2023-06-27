@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 6</title>
+</head>
+<body>
+    <h1>Задача 6</h1>
+    <p>  Створити окремі функції, які переводять:
+        Сантиметри у дюйми; 
+        Кілограми у фунти;
+        Кілометри у милі.        
+    </p>
+    <script>
+        //1. Сантиметри у дюйми.
+       let userLengthSm = parseFloat(prompt('Введіть довжину (см)'))
+
+        function santimeterToInches() {
+        let inchesResult = userLengthSm / 2.5
+        return inchesResult
+       }
+
+    alert(`${userLengthSm} см - це ${santimeterToInches()} дюймів`)
+
+    //2. Кілограми у фунти.
+    let userWeight = parseFloat(prompt('Введіть вагу (кг)'))
+
+    function kiloToIb() {
+        let ibResult = userWeight * 2.2
+        return ibResult
+       }
+
+    alert(`${userWeight} кг - це ${kiloToIb()} фунтів`)
+
+    //3. Кілометри у милі.    
+    let userLengthKm = parseFloat(prompt('Введіть довжину (км)'))
+ 
+    function kilometersToMiles() {
+        let milesResult = (userLengthKm * 0.6).toFixed(1)
+        return milesResult
+       }
+
+    alert(`${userLengthKm} км - це ${kilometersToMiles()} миль`)
+
+</script>
+</body>
+</html>
