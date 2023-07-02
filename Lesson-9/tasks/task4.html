@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 4</title>
+</head>
+<body>
+    <h1>Задача 4</h1>
+    <p>  Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.</p>
+    <script>
+    // Вводимо необхідні дані
+    let arr = [12, 4, 2533, 76, 2, 3344, 4, 77, 7]
+    const valueAddedTax = 0.3
+
+    //Змінюємо масив з цінами
+    function newArray(arr) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 1000) { 
+          let discount = arr[i] * valueAddedTax // 30% from price
+          let finalPrice = arr[i] - discount
+          arr[i] = finalPrice.toFixed()
+        }
+      }
+      return arr
+    }
+  
+    // Виводимо результат
+    document.write(`${newArray(arr)}<br>`)
+    </script>
+    
+</body>
+</html>

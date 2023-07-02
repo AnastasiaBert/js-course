@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+    <h1>Задача 2</h1>
+    <p>Дано масив елементів. Усі елементи, які більші за перший елемент помножити на 2.</p>
+    <script>   
+    //Вводимо необхідні дані
+    let arr = [12, 4, 25, 76, 2, 34, 4, 77, 7]
+    
+    //Виводимо потрібні елементи
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > arr[0]) document.write(`${arr[i] * 2}<br>`)
+    }
+    </script>
+</body>
+</html>
