@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+    <h1>Задача 2</h1>
+    <p>
+      Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:
+      номери днів, протягом яких кількість відвідувачів була меншою за 20;
+      номери днів, коли кількість відвідувачів була мінімальною;
+      номери днів, коли кількість відвідувачів була максимальною;
+      загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.   </p>
+    <script>   
+    // Вводимо необхідні дані
+    let visitorsArray = [0, 10, 30, 15, 24, 16, 190, 230]
+   
+    // номери днів, протягом яких кількість відвідувачів була меншою за 20;
+    function visitorsLessThan20(visitorsArray) {
+      let lessThan20 = []
+      for (let i = 1; i <= 7; i++) {
+        if (visitorsArray[i] < 20) {
+          lessThan20.push(i)
+        }
+      }
+      return lessThan20
+    }
+
+    // номери днів, коли кількість відвідувачів була мінімальною;
+    function minVisitors(visitorsArray) {
+      let min = visitorsArray[1]
+      for (let i = 1; i <= visitorsArray.length; i++) {
+        if (visitorsArray[i] <= min) {
+          min = visitorsArray[i]
+        }
+      }
+      return visitorsArray.indexOf(min)
+    }
+
+    // номери днів, коли кількість відвідувачів була максимальною;
+    function maxVisitors(visitorsArray) {
+      let max = visitorsArray[1]
+      for (let i = 1; i <= visitorsArray.length; i++) {
+        if (visitorsArray[i] > max) {
+          max = visitorsArray[i]
+        } else if (max < visitorsArray[i]) {
+          max = visitorsArray[1]
+        }
+      }
+      return visitorsArray.indexOf(max)
+    }
+
+    //  загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.   
+
+    function visitorsOnWorkDay(visitorsArray) {
+      let sumOfWorkingDay = 0
+      for (let i = 1; i <= 5; i++) {
+        sumOfWorkingDay += visitorsArray[i]
+      }
+      return sumOfWorkingDay
+    }
+
+    function visitorsOnHolidays(visitorsArray) {
+      let sumOfHolidays = 0
+      for (let i = 6; i <= 7; i++) {
+        sumOfHolidays += visitorsArray[i]
+      }
+      return sumOfHolidays
+    }
+
+    // Виводимо результат
+    document.write(`Відвідувачів було менше за 20 у такі дні: ${visitorsLessThan20(visitorsArray)}.<br>`)
+    document.write(`Найменше відвідувачів було у такі дні: ${minVisitors(visitorsArray)}.<br>`)
+    document.write(`Найбільше відвідувачів було у такі дні: ${maxVisitors(visitorsArray)}.<br>`)
+    document.write(`Загальна кількість відвідувачів в робочі дні: ${visitorsOnWorkDay(visitorsArray)}.<br>`)
+    document.write(`Загальна кількість відвідувачів на вихідних: ${visitorsOnHolidays(visitorsArray)}.<br>`)
+    </script>
+</body>
+</html>

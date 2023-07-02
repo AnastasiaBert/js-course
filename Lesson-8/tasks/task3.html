@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+    <h1>Задача 3</h1>
+    <p> Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».</p>
+    <script>
+    // Вводимо необхідні дані
+      let pupilsNumber = parseInt(prompt('Введіть кількість імен'))
+      let arrayOfNames = []
+    // Заповняємо масив даними  
+      for (let i = 0; i < pupilsNumber; i++) {
+        let pupilsName = prompt('Введіть  ім*я')
+        arrayOfNames.push(pupilsName)
+      }
+
+    // Шукаємо потрібне ім'я і рахуємо його кількість
+      function getIvanName(arrayOfNames) {
+        let sumNames = 0
+        for (let i = 0; i < arrayOfNames.length; i++) {
+          if (arrayOfNames[i] === 'Іван') {
+           sumNames++
+          }
+        }
+        return sumNames
+      }
+      
+    // Виводимо результат
+    alert(`Іванів у масиві - ${getIvanName(arrayOfNames)}.`)
+    </script>
+</body>
+</html>

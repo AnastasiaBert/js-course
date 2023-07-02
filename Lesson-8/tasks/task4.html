@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 4</title>
+</head>
+<body>
+    <h1>Задача 4</h1>
+    <p>  Дано послідовність оцінок учня. Підрахувати кількість:
+      1.	двійок
+      2.	кількість хороших оцінок (добре, відмінно);
+      3.	кількість оцінок, які нижче середнього.      
+        </p>
+    <script>
+    // Вводимо необхідні дані
+    let gradesArray = [] 
+    let goodGrades = 0
+    let badGrades = 0
+    let satisfactoryGrades = 0
+
+    // Заповнюємо масив даними (за замовчуванням оцінок 5)
+      for (let gradesNum = 0; gradesNum <= 5; gradesNum++) {
+        let grades = parseInt(prompt('Введіть оцінку (2-5)'))
+        gradesArray.push(grades)    
+      }
+
+    // Робимо підрахунок оцінок
+      for (let i = 0; i < gradesArray.length; i++) {
+        switch (gradesArray[i]) {
+              case 5:
+                goodGrades++
+                break;
+                case 4:
+                goodGrades++
+                break;
+                case 3:
+                satisfactoryGrades++
+                break;
+                case 2:
+                badGrades++
+                break;      
+              default:
+                break;
+            }
+      }
+
+    // Виводимо дані  
+    document.write(`Кількість хороших оцінок: ${goodGrades}. <br>
+      Кількість оцінок нижче середнього: ${satisfactoryGrades}. <br>
+      Кількість двійок: ${badGrades}.
+    `)
+    </script>
+    
+</body>
+</html>
