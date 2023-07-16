@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+    <h1>Задача 3</h1>
+    <p> Сформувати список з тих цін, які більші за попереднє значення.</p>
+    <script>
+     // 1. Функція генерації масиву з рандомними значеннями від 1 до 3000
+     let usersPeriod = parseInt(prompt('Print the number of the days'))
+    function getArr(period, min=1, max=3000) {
+      let arr = []
+      for (let i = 0; i < period; i++) {  
+        let randomElement = min + (Math.floor(Math.random()*max - min + min))
+        arr.push(randomElement)
+      }
+      return arr
+    }
+
+    // 2. Формуємо список з тих цін, які більші за попереднє значення.
+    const pricesList = getArr(usersPeriod)
+
+    let resultList = pricesList.filter((value, index, array) => index > 0 && value > array[index - 1]);
+
+    /*
+    let resultList = []
+    for (let i = 1; i < pricesList.length; i++) {
+      if (pricesList[i] > pricesList[i - 1]) {
+        resultList.push(pricesList[i]);
+      }
+    }
+    */
+    // 3. виводимо результат
+    document.write(`Array: ${pricesList}<br>`)
+    document.write(`Changes in array: ${resultList}<br>`)
+    </script>
+</body>
+</html>
