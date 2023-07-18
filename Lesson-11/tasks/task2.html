@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+    <h1>Задача 2</h1>
+   <p>  Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+    1. загальний прибуток за робочі дні
+    2. за вихідні дні
+    3. сформувати загальний список (одновимірний масив) зі значенням, які більші за 200
+    4. максимальний прибуток за середу
+    5. відсортувати кожен тиждень за зростанням
+   </p>
+   <script>
+    // Функція генерування рандомного числа
+    function getRandomNumber(minValue=200, maxValue=1000) {
+      return minValue + Math.floor(Math.random() * (maxValue - minValue + minValue))
+    }
+
+    // Формування одновимірного масиву (1 рядка)
+    function generateRandomArray(arrayLength, minValue=200, maxValue=1000) {
+      const arr = []
+      for (let i = 0; i < arrayLength; i++) {
+        const randNum = getRandomNumber(minValue, maxValue)
+        arr.push(randNum)
+      }
+      return arr
+    }
+    
+    //Формування багатовимірного масиву
+    function generateRandomTable(rowsNumber, columnsNumber, minValue=200, maxValue=1000) {
+      const table = []
+      for (let i = 0; i < rowsNumber; i++) {
+        const randomRow = generateRandomArray(columnsNumber, minValue, maxValue)
+        table.push(randomRow)
+      }
+      return table
+    }
+
+    // 1. Знаходимо загальну суму за робочі дні
+    let sumPerCertainDays = 0
+    const weekDays = 7
+    let usersShopNumber = parseInt(prompt('Print the number of shops'))
+    let arrayIncomes = generateRandomTable(usersShopNumber, weekDays);
+    function getSumPerWeek(arr, sum) {
+      for (let rows = 0; rows < arr.length; rows++) {
+        for (let col = 0; col < 5; col++) {
+          sum += arr[rows][col]
+        } 
+      }
+    return sum  
+    }
+
+    // 2. Загальний прибуток за вихідні дні
+    function getSumPerWeekends(arr, sum) {
+      for (let rows = 0; rows < arr.length; rows++) {
+        for (let col = 5; col < 7; col++) {
+          sum += arr[rows][col]
+        } 
+      }
+    return sum  
+    }
+
+    // 3. Сформувати загальний список (одновимірний масив) зі значенням, що більші за 200
+    let filteredArr = []
+    function getFilteredArray(arr, newArr) {
+      for (let rows = 0; rows < arr.length; rows++) {
+        for (let col = 0; col < 7; col++) {
+          if (arr[rows][col] > 200) {
+            newArr.push(arr[rows][col])
+          }
+        }
+      }  
+    return newArr   
+    }
+
+    // 4. максимальний прибуток за середу
+    let maxIncomesWednesday = -Infinity;
+    function getMaxIncomes(arr, max) {
+      for (let rows = 0; rows < arr.length; rows++) {
+        for (let col = 2; col < 3; col++) {
+          if (arr[rows][col] > max) {
+           max = arr[rows][col]
+          }
+        }
+      }  
+    return max   
+    }
+
+    // 5. Відсортувати кожен тиждень за зростанням
+    // Нам потрібен один масив
+  function getSortedArray(arr) {
+    let combinedArr = [].concat.apply([], arr)
+
+    // Сортуємо у порядку зростання
+    combinedArr.sort((a, b) => a - b)
+
+    // Робимо масив двовимірним
+    let sortedArrays = [];
+    let currentIndex = 0;
+    arr.forEach(function(array) { 
+      let sortedArray = combinedArr.slice(currentIndex, currentIndex + array.length); // ділимо на рівні частини 
+        currentIndex += array.length; // переміщуємося до потрібного індекса
+        sortedArrays.push(sortedArray);
+      });
+    return sortedArrays;
+  }
+  let sortedResult = getSortedArray(arrayIncomes)
+
+    // 3. Виводимо результат
+    document.write(`Array: ${arrayIncomes}<br>`)
+    document.write(`Sum per working days: ${getSumPerWeek(arrayIncomes, sumPerCertainDays)}<br>`)
+    document.write(`Sum per weekends: ${getSumPerWeekends(arrayIncomes, sumPerCertainDays)}<br>`)
+    document.write(`Array with el that is bigger than 200: ${getFilteredArray(arrayIncomes, filteredArr)}<br>`)
+    document.write(`Max number per Wednesday: ${getMaxIncomes(arrayIncomes, maxIncomesWednesday)}<br>`)
+    document.write(`Sorted array: ${sortedResult}<br>`)
+  </script>
+</body>
+</html>

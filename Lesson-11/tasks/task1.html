@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+    <h1>Задача 1</h1>
+   <p> 1 - 4. Знайти суми елементів у вказаній області (масиви розділені на 4 рівні частини). 
+    5. Суму парних рядків
+    6. Суму непарних стовпців
+    7. У парних рядках – непарні стовпці, у непарних – парні.
+   </p>
+   <script>
+    // 1. Масив
+    let array = [
+    // 0  1  2  3
+      [1, 1, 2, 2], // 0 -
+      [1, 1, 2, 2], // 1
+      [3, 3, 4, 4], // 2 -
+      [3, 3, 4, 4]  // 3
+    ] 
+    // 2. Функція для визначення суми окремих секцій
+    let sumSection = 0;
+    
+    function getSumSection(arr, sum, startNumberRow, rows, startNumberColumn, columns) {
+      for (let i = startNumberRow; i <= rows; i++) {
+        for (let i = startNumberColumn; i <= columns; i++) {
+          sum += arr[i][i]
+        }
+      }
+      return sum 
+    }  
+
+    // 5. Сума парних рядків. //
+    function getSumEvenRows(arr, sum) {
+      for (let rows = 0; rows <= 3; rows += 2) {
+        for (let columns = 0; columns <= 3; columns++) {
+          sum += arr[rows][columns]
+        }
+      }
+      return sum 
+    }  
+
+    // 6. Сума непарних рядків. //
+    function getSumOddColumns(arr, sum) {
+      for (let rows = 0; rows <= 3; rows++) {
+        for (let columns = 1; columns <= 3; columns += 2) {
+          sum += arr[rows][columns]
+        }
+      }
+      return sum 
+    }  
+ 
+     // 7. У парних рядках – непарні стовпці, у непарних – парні. //
+     function getSumOddEven(arr, sum) {
+      for (let rows = 0; rows <= 3; rows++) {
+          if (rows % 2 === 0) {
+            for (let columns = 1; columns <= 3; columns += 2) {
+              sum += arr[rows][columns]
+            }
+          } else {
+            for (let columns = 0; columns <= 3; columns += 2) {
+              sum += arr[rows][columns]
+            }
+          } 
+        
+      }
+      return sum 
+    }  
+
+    // 3. Виводимо результат
+    // 1 - 4 //
+    document.write(`1 section: ${getSumSection(array, sumSection, 0, 1, 0, 1)}<br>`)
+    document.write(`2 section: ${getSumSection(array, sumSection, 0, 1, 2, 3)}<br>`)
+    document.write(`3 section: ${getSumSection(array, sumSection, 2, 3, 0, 1)}<br>`)
+    document.write(`4 section: ${getSumSection(array, sumSection, 2, 3, 2, 3)}<br>`)
+    document.write(`Even rows: ${getSumEvenRows(array, sumSection)}<br>`)
+    document.write(`Odd columns: ${getSumOddColumns(array, sumSection)}<br>`)
+    document.write(`Even rows - odd columns, odd rows - even columns: ${getSumOddEven(array, sumSection)}<br>`)
+  </script>
+</body>
+</html>
