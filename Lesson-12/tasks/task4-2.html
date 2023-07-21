@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p> Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за зразком.</p>
+    <script>
+    // 1. Functions of generating random numbers and random array
+    function getRandomNumber(min=1, max=1000) {
+      return min + Math.floor(Math.random() * (max - min + min))
+    }
+
+    function getArray(arrayLength=10, min=1, max=1000) {
+      const arr = []
+      for (let i = 0; i < arrayLength; i++) {
+        const element = arr[i]
+        const randNum = getRandomNumber(min, max)
+        arr.push(randNum)
+      }
+      return arr
+    }
+
+    let generatedArray = getArray()
+    
+    // 2. Cocktail sort
+    function cocktailSort(arr) {
+      let leftIndex = 0;
+      let rigthIndex = arr.length - 1; 
+      let counter = 0;
+      let changed;
+
+      while (leftIndex < rigthIndex) {
+        changed = false;
+
+        for (let index = leftIndex; index < rigthIndex; index++) {
+          if (arr[index] > arr[index + 1]) {
+            swap(arr, index, index + 1);
+            counter++;
+            changed = true;
+            tableCreation(arr)
+          }
+        }
+
+        if (changed === false) break; 
+        changed = false;
+        rigthIndex--;
+    
+        for (let index = rigthIndex; index > leftIndex; index--) {
+          if (arr[index] < arr[index - 1]) {
+            swap(arr, index, index - 1);
+            counter++;
+            changed = true;
+          }
+        }
+
+        if (changed === false) break; 
+        changed = false;
+        leftIndex++;
+      }
+      return arr;
+    }
+
+    // Function swap
+    function swap(arr, i, j) {
+      let temporary = arr[i]
+      arr[i] = arr[j]
+      arr[j] = temporary
+    }
+
+    // Table
+    function tableCreation(arr) {
+      document.write('<table border="2px">')
+          document.write('<tr>')
+            for (let i = 0; i < arr.length; i++) {
+              document.write(`<td>${arr[i]}</td>`)  
+            }
+          document.write('</tr>')
+      document.write('</table>')
+    }
+    // 3. Show the result    
+    document.write(`Array:${generatedArray}`)
+    document.write(`${cocktailSort(generatedArray)}<br>`)
+    </script>
+    
+</body>
+</html>

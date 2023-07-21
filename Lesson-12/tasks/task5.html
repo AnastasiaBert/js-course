@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+    <h1>Task 5</h1>
+    <p> Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я «Olga» і під яким індексом.</p>
+    <script>
+    // 1. Array of names
+   let names = ['Olesya', 'Olya', 'Nastya', 'Tanya', 'Lisa']
+   const searchElement = 'Olya';
+
+    // 2. Sort array in a correct order
+    let sortedArray = names.sort((a, b) => {
+        if (a.length  === b.length) {
+            let res
+            // Sort alphabetically if the lengths are the same
+            res = a.localeCompare(b)
+        } else {
+            // sort by length
+            res = a.length - b.length 
+        }
+        return res
+    })
+
+   // 3. Create a binary function 
+   function binarySearch(arr, searchEl) {
+        let left = 0;
+        let right = arr.length - 1;
+        while (left <= right) {
+            const mid = Math.floor((left + right) / 2);
+            if (arr[mid] === searchEl) {
+                return mid;
+            } else if (arr[mid] < searchEl) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    // 4. Show the result
+    let index = binarySearch(sortedArray, searchElement);
+    document.write(`Array: ${sortedArray}<br>`)
+    if (index !== -1) {
+        document.write(`Element ${searchElement} found at index ${index}.`);
+    } else {
+        document.write(`Element ${searchElement} not found in the array.`);
+    }
+    </script>
+</body>
+</html>

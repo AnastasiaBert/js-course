@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p> Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за зразком.</p>
+    <script>
+    // 1. Functions of generating random numbers and random array
+    function getRandomNumber(min=1, max=1000) {
+      return min + Math.floor(Math.random() * (max - min + min))
+    }
+
+    function getArray(arrayLength=10, min=1, max=1000) {
+      const arr = []
+      for (let i = 0; i < arrayLength; i++) {
+        const element = arr[i]
+        const randNum = getRandomNumber(min, max)
+        arr.push(randNum)
+      }
+      return arr
+    }
+
+    let generatedArray = getArray()
+    
+    // 2. Insert Sort
+    function insertSort(arr) {
+       let currentEl
+       let i
+       for (let k = 0; k < arr.length; k++) {
+        currentEl = arr[k]
+        i = k - 1
+        while (i>=0 && arr[i] > currentEl) {
+          arr[i + 1] = arr[i]
+          i = i - 1   
+        }
+        arr[i + 1] = currentEl
+        tableCreation(arr)
+       }
+       return arr
+    }
+
+    // Table
+    function tableCreation(arr) {
+        document.write('<table border="2px">')
+            document.write('<tr>')
+              for (let i = 0; i < arr.length; i++) {
+                document.write(`<td>${arr[i]}</td>`)  
+              }
+            document.write('</tr>')
+        document.write('</table>')
+    }   
+
+    // 3. Show the result
+    document.write(`Array:${generatedArray}`)    
+    document.write(`${insertSort(generatedArray)}<br>`)
+    </script>
+    
+</body>
+</html>
