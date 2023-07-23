@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+  <h1>Задача 1</h1>
+  <p> Нехай x0 = 1, xi = xi - 1 + 2i (x1 = x1 - 1 + 2*1) де i = 1, 2... Визначити x10. Розв’язати з використанням рекурсивних і 
+    нерекурсивних алгоритмів.</p>
+  <script>
+    // 1. Using recursion 
+    function getNum(num) {
+      if (num === 0) 
+      return 1
+      else
+      return getNum(num - 1) + 2 * 1 
+    }
+
+    // 2. Show the result
+    let number = getNum(10)
+    document.write(`${number}<br>`)
+   
+    // 1. Using another way
+    function getNum2(num) {
+      let result = 1;
+      for (let i = 0; i < num; i++) {
+        result += 2 * 1;
+      }
+      return result;
+    }
+
+    // 2. Show the result
+    let number2 = getNum2(10)
+    document.write(number2)
+  </script>
+</body>
+</html>

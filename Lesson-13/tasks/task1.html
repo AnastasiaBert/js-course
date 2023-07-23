@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 0</title>
+</head>
+<body>
+    <h1>Задача 0</h1>
+   <p>Реалізувати рекурсивну функцію знаходження степеня числа а.</p>
+   <script>
+    // 1. Declare variables
+    let userNumber = parseInt(prompt('Print the number'))
+    let userExponent = parseInt(prompt('Print the exponent')) 
+    
+    // 2. Create a function
+    function raisedToPower(baseNum, exponent) {
+      if (exponent === 0) {
+        let res
+        res = 1;
+      } else if (exponent === 1) {
+        res = baseNum
+      } else {
+        res = baseNum * raisedToPower(baseNum, exponent - 1)
+      }
+      return res
+    }
+
+    // 3. Show the result
+    document.write(`${userNumber} raised to power of ${userExponent}: ${raisedToPower(userNumber, userExponent)}`)
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+</head>
+<body>
+    <h1>Task 6</h1>
+    <p> Тренажер додавання. Кожні 10 секунд користувачу задають 
+      випадковий приклад з додавання двох цифр і робиться перевірка.</p>
+    <script>
+      // 1. Function with setInterval
+      function multiplyNumbers() {
+        setInterval(() => {
+          for (let i = 0; ; i++) {
+          let randNum1 = 1 + Math.floor(Math.random() * 9 - 1 + 1)
+          let randNum2 = 1 + Math.floor(Math.random() * 9 - 1 + 1)
+          let result = randNum1 + randNum2
+          alert(`${randNum1} + ${randNum2}?`)
+          let usersResult = parseInt(prompt('Print answer'))
+          if (usersResult === result) alert('correct')
+          else alert('incorect')
+          }
+        }, 1000);
+      }
+      
+      // 2. Call the function
+      multiplyNumbers()
+    </script>
+</body>
+</html>
