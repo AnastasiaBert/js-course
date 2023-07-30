@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+    <h1>Задача 1</h1>
+   <p>Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+    ----- Властивості ------
+    назва компанії на час розробки (назву періодично змінюють)
+    власник компанії
+    споснсори (масив спонсорів)
+                 * прізвище спонсора
+          * ім’я  спонсора
+          * сума вкладень спонсора
+    рік випуску
+    вартість сайту
+    <p>Знайти:</p>
+    <p>1. загальну вартість усіх сайтів </p>
+    <p>2. кількість сайтів, що було зроблено між 2000 та 2009 рр. </p>
+    <p>3. кількість сайтів, де сума спонсорських вкладень була більшою за 100000 </p>
+    <p>4. створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив) </p>
+    <p>5. знайти рік, коли прибуток був найбільшим </p>
+    <p>6. упорядкувати список за спаданням прибутку </p>
+    <p>7. Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000 </p>
+    </p>
+   <script>
+    // 1. Create array of the objects
+    let websiteObj = [
+    {
+      name: 'First company',
+      owner: 'Akimova Anna',
+      sponsors: [
+        { surName: "Akimova", firstName: "Anna", sumOfInvestation: 9000 },
+        { surName: "Ivanova", firstName: "Olya", sumOfInvestation: 7700 },
+      ],
+      yearOfRealize: 2001,
+      priceOfWebsite: 55168,
+    },
+    {
+      name: 'Second company',
+      owner: 'Akimova Anna',
+      sponsors: [
+        { surName: "Akimova", firstName: "Anna", sumOfInvestation: 9000 },
+        { surName: "Ivanova", firstName: "Olya", sumOfInvestation: 7700 },
+      ],
+      yearOfRealize: 1999,
+      priceOfWebsite: 12341,
+    },
+    {
+      name: 'Third company',
+      owner: 'Akimova Anna',
+      sponsors: [
+        { surName: "Akimova", firstName: "Anna", sumOfInvestation: 9000 },
+        { surName: "Ivanova", firstName: "Olya", sumOfInvestation: 777700 },
+      ],
+      yearOfRealize: 2017,
+      priceOfWebsite: 1111,
+    },
+  ]
+    // 2. Solve the tasks
+    // - Total price - //
+    let totalPriceOfWeb = websiteObj.reduce((prevPrice, website) => 
+      prevPrice + website.priceOfWebsite, 0)
+
+    // - Count websites between 2000 and 2009 - //
+    let websitesBetween2000And2009 = websiteObj.reduce((count, website) => 
+      website.yearOfRealize > 2000 && website.yearOfRealize < 2009 ? count + 1 : count, 0)
+    
+    // -  Count websites, where the sum of investation was bigger 100000 - //
+    let websitesWithBigInvestation = websiteObj.reduce((count, { sponsors }) => 
+    sponsors.reduce((count, sponsor) => sponsor.sumOfInvestation > 100000 ? count + 1 : count, 0));
+
+    // - Create the list of all sponsors - //
+    let sponsorsList = websiteObj.map(( {sponsors} ) =>  sponsors.map((sponsor) => `${sponsor.surName} ${sponsor.firstName}`))
+
+    // - 5 - // 
+    // - find when the income was the biggest - //
+    // The biggest price
+    let biggestPrice = websiteObj.reduce((max, obj) => { return obj.priceOfWebsite > max ? obj.priceOfWebsite : max},   0)
+ 
+    // The biggest investation 
+    // 1. Find the max sumOfInvestation in each sponsors array
+    let maxInvestationSponsor = websiteObj.map(({ sponsors }) =>
+      sponsors.reduce((max, sponsor) => (sponsor.sumOfInvestation > max ? sponsor.sumOfInvestation : max), 0)
+    );
+
+    // 2. Find the max sumOfInvestation from all companies
+    let maxInvestation = maxInvestationSponsor.reduce((max, investation) => (investation > max ? investation : max), 0);
+    
+    // - 6 - //
+    // sort elements for descending prices 
+    let copyFirstObjWebsites = (JSON.parse(JSON.stringify(websiteObj)))
+    let sortWebsiteForDesc = copyFirstObjWebsites.sort((a, b) => b.priceOfWebsite - a.priceOfWebsite)
+   
+    // - 7 - //
+    // Create two lists with copy of object where will be websites < 10000 and websites > 10000
+    // Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартістю до 10000 і більше 10000
+    let copyOfObject1 = JSON.parse(JSON.stringify(websiteObj))
+    let copyOfObject2 = JSON.parse(JSON.stringify(websiteObj))
+
+    let websiteObjLess10000 = copyOfObject1.filter(website => website.priceOfWebsite < 10000);
+    let websiteObjBigger10000 = copyOfObject2.filter(website => website.priceOfWebsite > 10000);
+
+    // 3. Show the result
+    document.write(`Total sum of prices: ${(totalPriceOfWeb)}<br>`)
+    document.write(`The number of websites between 2000 and 2009: ${(websitesBetween2000And2009)}<br>`)
+    document.write(`Websites, where the sum of investation was bigger 100000: ${(websitesWithBigInvestation)}<br>`)
+    document.write(`Array of sponsors: ${(sponsorsList)}<br>`)
+    document.write(`The biggest price of websites: ${(biggestPrice)}<br>`);
+    document.write(`The biggest income from sponsors: ${(maxInvestation)}<br>`)
+    document.write(`Prices in descending order: <br>`)
+    for (let website of copyFirstObjWebsites) {
+      document.write(`${website.priceOfWebsite},<br>`)
+    }
+    document.write(`The list where websites is less 10000: <br>`)
+    for (let website of websiteObjLess10000) {
+      document.write(`${website.name} has prices ${website.priceOfWebsite}.`)
+    }
+    document.write(`<br>`)
+    document.write(`The list where websites is bigger than 10000: <br>`)
+    for (let website of websiteObjBigger10000) {
+      document.write(`${website.name} has prices ${website.priceOfWebsite}.<br>`)
+    }
+  </script>
+</body>
+</html>
