@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+    <h1>Task 5</h1>
+    <p>Розробити клас Baner
+        - Поля -
+        Масив об’єктів ( графічних зображень та посилань на сайти) 
+        - методи -
+        Метод випадкового вибору об’єкта (графічного зображення та посилання)
+        Метод виведення випадкового банера  
+    </p>
+    <script> 
+    class Baner {
+        constructor(images, links) {
+            this.links = links,
+            this.images = images
+        }
+
+        getRandomLinks() {
+           const randIndex = Math.floor(
+            Math.random()*this.links.length
+           )
+           return this.links[randIndex]
+        }
+
+        getRandomImages() {
+            const randIndex = Math.floor(
+                Math.random()*this.images.length
+            )
+            return this.images[randIndex]
+        }
+
+        display() {
+            let img = this.getRandomImages()
+            let link = this.getRandomLinks()
+            document.write(`<img src='${img}' width='300px'>${link}</img>`)
+        }
+    }
+    let img = new Baner(['images/flower1.png', 'images/flower2.png', 'images/flower3.png', 'images/flower4.png', 'images/flower5.png',], ['https://google.com/', 'https://translate.google.com/', 'https://www.youtube.com/', 'https://leetcode.com/', 'https://context.reverso.net/'])
+    img.display()
+        
+    </script>   
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+  <h1>Task 3</h1>
+  <p>
+    Задача 2. Створити об’єкт «Авто». 
+      Поля(властивості)
+      Марка
+      Розмір бака
+      Кількість наявних літрів
+      Кількість місць
+      Кількість пасажирів
+      Методи (дії)
+      // Заправка на вказану кількість літрів
+      // Виведення кількості пасажирів
+      // Додавання пасажирів
+      // Висадка пасажирів
+    </p>
+  <script>
+    // 1. Create an object
+    class Auto {
+      constructor(brand, tankSize, fuelLitres, seatsNumber, passengerNumber) {
+        this.brand = brand,
+        this.tankSize = tankSize,
+        this.fuelLitres = fuelLitres,
+        this.seatsNumber = seatsNumber,
+        this.passengerNumber = passengerNumber
+      }
+
+      carRefueling(userFuelLitres) {
+        let updatedFuel = userFuelLitres + this.fuelLitres
+        if (updatedFuel > this.tankSize) {
+          throw new Error('В баку недостатньо місця для такої кількість пального.')
+          } else {
+            alert(`Тепер ваш бак заповнений на ${updatedFuel} літрів пального.`)
+          }   
+        this.fuelLitres = updatedFuel
+      }
+      
+      addPassenger(userPassengerNumber) {
+        let leftSeats;
+        let updatedLeftSeats;        
+        if (userPassengerNumber <= this.seatsNumber) {
+          leftSeats = this.seatsNumber - userPassengerNumber;
+          alert(`Залишилось ${leftSeats} місць.`);
+          this.passengerNumber = userPassengerNumber;    
+        } else {
+          throw new Error('Недостатньо місць');
+        }
+      }    
+
+      minusPassenger(userMinusPassengerNumber) {
+        alert(`В машині ${this.passengerNumber} пасажирів.`)    
+        if (userMinusPassengerNumber < this.passengerNumber) {
+          let updatedPassengerNumber = this.passengerNumber - userMinusPassengerNumber
+          alert(`Залишилось ${updatedPassengerNumber} пасажирів`)
+          this.passengerNumber = updatedPassengerNumber;    
+        } else {
+          throw new Error('В машині менше пасажирів');
+        }
+
+        this.displayPessengerNumber()
+      }    
+
+      displayPessengerNumber() {
+        alert(`В машині ${this.passengerNumber} пасажирів.`)
+      }
+  }    
+  let auto1 = new Auto('Audi', 30, 5, 5);
+  // Display the result
+  let userFuelLitres = parseInt(prompt('Скільки літрів пального хочете?'));
+  auto1.carRefueling(userFuelLitres);
+  let userPassengerNumber = parseInt(prompt('Скільки людей хоче сісти в машину?'));
+  auto1.addPassenger(userPassengerNumber);
+  let userMinusPassengerNumber = parseInt(prompt('Скільки людей хоче вийти?'));
+  auto1.minusPassenger(userMinusPassengerNumber);
+      /*
+      carRefueling() {
+        let userFuelLitres = parseInt(prompt('Скільки літрів пального хочете?'));
+        let updatedFuel = userFuelLitres + this.fuelLitres
+        if (updatedFuel > this.tankSize) {
+          alert('В баку недостатньо місця для такої кількість пального.')
+          alert(`Ви можете заправити машину на ${this.tankSize - this.fuelLitres} літрів.`)
+          let userFuelLitres2 = parseInt(prompt('Скільки літрів пального хочете?'));
+          let updatedFuel2 = userFuelLitres2 + this.fuelLitres
+          if (updatedFuel2 > this.tankSize) {
+            alert('В баку недостатньо місця для такої кількість пального.')
+          } else {
+            alert(`Тепер ваш бак заповнений на ${updatedFuel2} літрів пального.`)
+          }   
+        } else {
+          alert(`Тепер ваш бак заповнений на ${updatedFuel} літрів пального.`)
+        }
+        this.fuelLitres = updatedFuel
+      }
+      
+      addPassenger() {
+        let leftSeats;
+        let updatedLeftSeats;
+        let userPassengerNumber = parseInt(prompt('Скільки людей хоче сісти в машину?'));
+        
+        if (userPassengerNumber <= this.seatsNumber) {
+          leftSeats = this.seatsNumber - userPassengerNumber;
+          alert(`Залишилось ${leftSeats} місць.`);
+          this.passengerNumber = userPassengerNumber;    
+
+          if (leftSeats !== 0) {
+            let addPassenger = confirm('Ще додати людей?');
+            
+            if (addPassenger) {
+              let userPassengerNumber2 = parseInt(prompt('Скільки людей хочуть сісти в машину?'));
+              updatedLeftSeats = leftSeats - userPassengerNumber2;
+              
+              if (updatedLeftSeats < 0) {
+                alert('Недостатньо місць.');
+              } else {
+                alert(`Залишилось ${updatedLeftSeats} місць.`);
+                this.passengerNumber += userPassengerNumber2;
+              }
+            } else {
+              alert('Добре. Щасливої дороги!');
+            }
+          }
+        } else {
+          alert('Недостатньо місць');
+        }
+      }    
+
+      minusPassenger() {
+        alert(`В машині ${this.passengerNumber} пасажирів.`)
+        let userMinusPassengerNumber = parseInt(prompt('Скільки людей хоче вийти?'));
+        
+        if (userMinusPassengerNumber < this.passengerNumber) {
+          let updatedPassengerNumber = this.passengerNumber - userMinusPassengerNumber
+          alert(`Залишилось ${updatedPassengerNumber} пасажирів`)
+          this.passengerNumber = updatedPassengerNumber;    
+
+          let minusAgain = confirm('Хтось ще хоче вийти?');
+          if (minusAgain) {
+            let userMinusPassengerNumber2 = parseInt(prompt('Скільки людей?'));
+            let updatedPassengerNumber2 = updatedPassengerNumber - userMinusPassengerNumber2;
+            if (updatedPassengerNumber2 < 0) {
+              alert('В машині менше пасижирів.');
+            } else {
+              alert('Щасливої дороги!');
+              this.passengerNumber = updatedPassengerNumber2;
+            } 
+          } else {
+            alert('Щасливої дороги!');
+          }    
+
+        } else {
+          alert('в машині менше пасажирів');
+        }
+      }    
+
+      displayPessengerNumber() {
+        alert(`В машині ${this.passengerNumber} пасажирів.`)
+      }
+  }    
+  */
+  </script>
+</body>
+</html>

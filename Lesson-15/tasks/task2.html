@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+  <h1>Задача 2</h1>
+  <p> Створити об’єкт «Тир». 
+    У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+    Тир	
+    Поля(властивості)
+    Масив, у якому зберігається поле з зайцями
+    Методи (дії)
+    Метод пострілу (задається позиція пострілу)
+    Виведення ігрового поля
+  </p>
+  <script>
+    // 1. Create an object
+    let userShot = parseInt(prompt('Куди стріляємо (1-7)?'))
+    class ShootingRange {
+      constructor(arrField) {
+        this.arrField = arrField
+      }
+      
+      randNumber() {
+        let randIndex = Math.floor(Math.random()* 2)
+        return randIndex
+      }
+      generateArr() {
+        this.arrField = []
+        for (let i = 0; i <= 7; i++) {
+          this.arrField[i] = this.randNumber()
+        }
+      }
+      display() {
+        console.log(this.arrField)
+      }
+      shot(userShot) {
+        this.randNumber()
+        this.generateArr()
+        this.display()
+        if (this.arrField[userShot] === 1) {
+          alert('Вітаю! Ви попали!')
+        } else {
+          alert('Спробуйте ще раз!')
+        }
+      }
+    }
+  
+    let game = new ShootingRange ()
+    game.shot(userShot)
+  </script>
+</body>
+</html>
