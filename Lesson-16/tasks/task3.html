@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+  <h1>Task 3</h1>
+  <p>
+    Об’єкт “Фірма” (використати члени-класи)
+      поля
+      назва фірми;
+      дата заснування (рік, місяць);
+      послуги (назва послуги, вартість, термін виконання);
+      адреси філіалів (країна, місто, вулиця, номер будинку);
+      методи
+      визначення кількості років існування фірми;
+      виведення всіх філіалів фірми у вказаному місті;
+      виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+    </p>
+  <script>
+    // Create class
+    class Company {
+      #name
+      #foundationMonth
+      #foundationYear
+      constructor(initName, foundationMonth, foundationYear, services, address) {
+        this.Name = initName,
+        this.FoundationMonth = foundationMonth,
+        this.FoundationYear = foundationYear,
+        this.services = services,
+        this.address = address
+      }
+
+      get Name () {
+        return this.#name
+      }
+
+      set Name(newName) {
+        if (newName.length < 2 || typeof newName !== "string") {
+          throw new Error ('Name must be more than 2 symbols')
+        }
+        this.#name = newName
+      }
+      get FoundationMonth () {
+        return this.#foundationMonth
+      }
+
+      set FoundationMonth (newMonth) {
+        if(newMonth < 1 || newMonth > 12) {
+          throw new Error('Incorect month')
+        }
+        this.#foundationMonth = newMonth
+      }
+  
+      get FoundationYear() {
+        return this.#foundationYear
+      }
+
+      set FoundationYear (newYear) {
+        if(newYear < 1900) {
+          throw new Error('Incorect year')
+        }
+        this.#foundationYear = newYear
+      }
+
+      yearOfExisting(userYear, userMonth) {
+        let totalMonths = (userYear - this.FoundationYear) * 12 + (userMonth - this.FoundationMonth);
+        let existingYears = Math.floor(totalMonths / 12);
+        let existingMonths = totalMonths % 12;
+    
+        if (userMonth < 1 || userMonth > 12 || userYear < this.FoundationYear) {
+          throw new Error('Invalid month or year');
+        } else {
+          return `Компанія існує ${existingYears} роки(ів) і ${existingMonths} місяць(ів)).`;
+        }
+      }
+
+      displayAllOffices(userFilial) {
+        let res = []
+        if (userFilial === 'Lviv') {
+          const officesInLviv = this.address.filter((address) => address[1] === 'Lviv')
+          for (const address of officesInLviv) {
+            res.push(`${address[0]}, ${address[1]}, ${address[2]}, ${address[3]}`);
+          }
+        } else if (userFilial === 'Kyiv') {
+          const officesInKyiv = this.address.filter((address) => address[1] === 'Kyiv')
+          for (const address of officesInKyiv) {
+            res.push(`${address[0]}, ${address[1]}, ${address[2]}, ${address[3]}`);
+          }
+        } else {
+          res.push(`${userFilial} is not found.`)
+        }
+        return res 
+      }
+
+      showAllowedServices(userMoney) {
+        let prices = []
+        let minPrice = Infinity;
+        for(const price of this.services) {
+          let min = price[1]
+          if (price[1] < minPrice)
+          minPrice = price[1] 
+        }
+        if (userMoney < minPrice) {
+          throw new Error('Недостатньо коштів для послуг.')
+        } else if (userMoney > minPrice) {
+          const allowedPrices = this.services.filter((service)=> service[1] <= userMoney) 
+          for (const service of allowedPrices) {
+            prices.push(`послуга: ${service[0]}, її ціна: ${service[1]}, термін часу: ${service[2]}`)
+          }
+        }
+        return prices
+      }
+
+      run(userYear, userMonth, userFilial, userMoney) {
+        let date = this.yearOfExisting(userYear, userMonth)
+        let offices = this.displayAllOffices(userFilial)
+        let servicesWithPrices = this.showAllowedServices(userMoney)
+        let pricesString = servicesWithPrices.join(', ')
+        document.write(`${date} .<br> ${offices} .<br> Вам доступна ${pricesString}.`)
+      }
+    }
+
+    let company1 = new Company('Rozetka', 7, 2000, [['trade', 1000, 2], ['repair', 500, 12], ['somethingElse', 700, 5]], [['Ukraine', 'Lviv', 'street', 9], ['Ukraine', 'Kyiv', 'street', 7], ['Ukraine', 'Lviv', 'street', 2]]);
+    // Display the result
+    let userYear = parseInt(prompt('Який тепер рік?'));
+    let userMonth = parseInt(prompt('Який тепер місяць?'));
+    let userFilial = prompt('Введіть місто, в якому хочете побачити адресу філіалів. (Lviv/Kyiv)');
+    let userMoney = parseInt(prompt('Введіть, скільки у вас коштів на рахунку.'));
+    company1.run(userYear, userMonth, userFilial, userMoney)
+  </script>
+</body>
+</html>

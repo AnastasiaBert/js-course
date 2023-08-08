@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+  <h1>Задача 2</h1>
+  <p> 
+    Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді
+    доларового еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи
+    необхідну суму у гривнях, та визначення курсу долара, при якому сума у гривнях 
+    збільшиться на 100. Курс долара зберігати в окремому полі. 
+  </p>
+  <script>
+    class TMoney {
+      #dollarBalance;
+    
+      constructor(initGRNBalance, dollarRate) {
+        this.dollarRate = dollarRate;
+        this.Balance = initGRNBalance 
+      }
+    
+      get Balance() {
+        return this.#dollarBalance * this.dollarRate;
+      }
+    
+      set Balance(grnSum) {
+        if (grnSum < 0) {
+          throw new Error('Invalid sum');
+        }
+        this.#dollarBalance = grnSum / this.dollarRate;
+      }
+    
+      addMoney(grnSum) {
+        if (grnSum < 0) {
+          throw new Error('Error. Sum must be > 0');
+        }
+        this.Balance = this.Balance + grnSum;
+        return this.Balance;
+      }
+    
+      getMoney(grnSum) {
+        if (grnSum < 0 || grnSum > this.Balance) {
+          throw new Error('Error. Money isn`t enough');
+        } 
+        this.Balance = this.Balance - grnSum;
+        return this.Balance;
+      }
+    
+      getTarget100Rate() {
+        return (this.Balance + 100) / this.#dollarBalance;
+      }
+    
+      run(grnSum) {
+        let add = this.addMoney(grnSum);
+        let get = this.getMoney(grnSum);
+        let targetRate = this.getTarget100Rate().toFixed(2);
+        document.write(`Рахунок спочатку: ${userMoney}. <br> 
+        Якщо додамо на рахунок ${grnSum} гривень буде ${add}. <br> 
+        Якщо знімемо ${grnSum} гривень, залишиться ${get}. <br> 
+        Сума збільшится на сто при такому курсі доллара ${targetRate}.`);
+      }
+    }
+    
+    let userMoney = parseInt(prompt('Скільки грошей на рахунку?'));
+    let dollarRate = parseInt(prompt('Введіть курс доллара.'));
+    
+    let money1 = new TMoney(userMoney, dollarRate);
+    let grnSum = parseInt(prompt('Введіть суму, яку хочете (додати/зняти).'));
+    money1.run(grnSum);
+  </script>
+</body>
+</html>

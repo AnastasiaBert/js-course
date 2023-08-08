@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p>Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля 
+        для зберігання кількості купюр кожного із номіналів від 5 до 200 гривень. Реалізувати
+        методи знаходження максимальної та мінімальної сум, які може видати банкомат, та
+        метод зняття деякої суми.
+    </p>
+    <script>
+        class TBankomat {
+            #five
+            #ten
+            #twenty
+            #fifty
+            #oneHundred
+            #twoHundred
+            constructor(five, ten, twenty, fifty, oneHundred, twoHundred) {
+               this.Five = five;
+               this.Ten = ten;
+               this.Twenty = twenty;
+               this.fifty = fifty;
+               this.OneHundred = oneHundred;
+               this.TwoHundred = twoHundred;
+            }
+
+            get Five() {
+                return this.#five
+            }
+            set Five(newNote) {
+                if (newNote !== 5) {
+                    throw new Error('This banknote must be 5')
+                }
+                this.#five = newNote
+            }
+
+            get Ten() {
+                return this.#ten
+            }
+            set Ten(newNote) {
+                if (newNote !== 10) {
+                    throw new Error('This banknote must be 10')
+                }
+                this.#ten = newNote
+            }
+
+            get Twenty() {
+                return this.#twenty
+            }
+            set Twenty(newNote) {
+                if (newNote !== 20) {
+                    throw new Error('This banknote must be 20')
+                }
+                this.#twenty = newNote
+            }
+
+            get Fifty() {
+                return this.#fifty
+            }
+            set Fifty(newNote) {
+                if (newNote !== 50) {
+                    throw new Error('This banknote must be 50')
+                }
+                this.#fifty = newNote
+            }
+
+            get OneHundred() {
+                return this.#oneHundred
+            }
+            set OneHundred(newNote) {
+                if (newNote !== 100) {
+                    throw new Error('This banknote must be 100')
+                }
+                this.#oneHundred = newNote
+            }
+
+            get TwoHundred() {
+                return this.#twoHundred
+            }
+            set TwoHundred(newNote) {
+                if (newNote !== 200) {
+                    throw new Error('This banknote must be 200')
+                }
+                this.#twoHundred = newNote
+            }
+
+            getMoney(userSum) {
+                let remainingSum = userSum;
+                let res = [];
+        
+                const getBanknotes = (banknote, numOfNotes) => {
+                    for (let i = 0; i < numOfNotes; i++) {
+                        res.push(banknote);
+                        remainingSum -= banknote;
+                    }
+                };
+        
+                while (remainingSum > 0) {
+                    if (remainingSum >= 200 && this.TwoHundred > 0) {
+                        getBanknotes(200, Math.min(Math.floor(remainingSum / 200), this.TwoHundred));
+                    } else if (remainingSum >= 100 && this.OneHundred > 0) {
+                        getBanknotes(100, Math.min(Math.floor(remainingSum / 100), this.OneHundred));
+                    } else if (remainingSum >= 50 && this.Fifty > 0) {
+                        getBanknotes(50, Math.min(Math.floor(remainingSum / 50), this.Fifty));
+                    } else if (remainingSum >= 20 && this.Twenty > 0) {
+                        getBanknotes(20, Math.min(Math.floor(remainingSum / 20), this.Twenty));
+                    } else if (remainingSum >= 10 && this.Ten > 0) {
+                        getBanknotes(10, Math.min(Math.floor(remainingSum / 10), this.Ten));
+                    } else if (remainingSum >= 5 && this.Five > 0) {
+                        getBanknotes(5, Math.min(Math.floor(remainingSum / 5), this.Five));
+                    } else {
+                        break;
+                    }
+                }
+                return res;
+            }
+
+            getMinValue() {
+                const values = [
+                    this.Five,
+                    this.Ten,
+                    this.Twenty,
+                    this.fifty,
+                    this.OneHundred,
+                    this.TwoHundred
+                ];
+                return Math.min(...values);
+            }
+            getMaxValue() {
+                const values = [
+                    this.Five,
+                    this.Ten,
+                    this.Twenty,
+                    this.fifty,
+                    this.OneHundred,
+                    this.TwoHundred
+                ];
+                return Math.max(...values);
+            }
+
+            toString(userSum) {
+                let getMoney = this.getMoney(userSum);
+                let min = this.getMinValue();
+                let max = this.getMaxValue();
+                return (`Banknotes: ${getMoney} <br> Min banknote: ${min} <br> Max banknote: ${max}`)
+            }
+        }
+
+    // Display the result
+    let money1 = new TBankomat(5, 10, 20, 50, 100, 200);
+    let userSum = parseInt(prompt('Введіть суму, яку хочете зняти:'));
+    let getResult = money1.toString(userSum);
+    document.write(getResult);
+
+    /*
+    getMoney(userSum) {
+        let res = [];
+        while (userSum > 0) {
+            if (userSum >= 200) {
+            let maxNum = Math.floor(userSum / 200);
+            let remainingSum = userSum - (maxNum * this.twoHundred); // 320 - (1 * 200)
+            
+            for (let i = 0; i < maxNum; i++) {
+                res.push(this.twoHundred);
+            }
+            // 300 + 40 =
+
+            if (remainingSum % 100 === 0 || remainingSum > 100 && remainingSum !== 0) {
+                res.push(this.oneHundred);
+                remainingSum -= this.oneHundred;
+            }
+
+            if (remainingSum % 50 === 0 && remainingSum !== 0) {
+                res.push(this.fifty);
+                remainingSum -= this.fifty;
+            }
+
+            if (remainingSum % 20 === 0 && remainingSum !== 0) {
+                res.push(this.twenty);
+                remainingSum -= this.twenty;
+            }
+
+            if (remainingSum % 10 === 0 && remainingSum !== 0) {
+                res.push(this.ten);
+                remainingSum -= this.ten;
+            }
+
+            if (remainingSum % 5 === 0 && remainingSum !== 0) {
+                res.push(this.five);
+            }
+            
+        } else if (userSum < 200) {
+            //230
+            res.push(this.oneHundred);
+            let remainingSum = userSum - this.oneHundred;
+
+            if (remainingSum % 50 === 0 && remainingSum !== 0) {
+                res.push(this.fifty);
+                remainingSum -= this.fifty;
+            }
+            if (remainingSum % 30 === 0 && remainingSum !== 0) { // 30 // 
+                res.push(this.twenty);
+                res.push(this.ten)
+                remainingSum -= this.fifty;
+            }
+
+            if (remainingSum % 20 === 0 && remainingSum !== 0) {
+                res.push(this.twenty);
+                remainingSum -= this.twenty;
+            }
+
+            if (remainingSum % 10 === 0 && remainingSum !== 0) {
+                res.push(this.ten);
+                remainingSum -= this.ten;
+            }
+
+            if (remainingSum % 5 === 0 && remainingSum !== 0) {
+                res.push(this.five);
+            }
+        } else {
+           res.push('Invalid sum')
+        }
+        return res;
+    }
+            
+        }
+    }
+
+
+    let money1 = new TBankomat(5, 10, 20, 50, 100, 200);
+    let userSum = parseInt(prompt('Введіть суму, яку хочете зняти:'));
+    let dispensedNotes = money1.getMoney(userSum);
+    console.log('Купюри:', dispensedNotes);*/
+    </script>
+</body>
+</html>
