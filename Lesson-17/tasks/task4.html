@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p>Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис), назва книги, жанр,
+        видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки організувати додавання/вилучення книг 
+        та  вибір книг за назвою, за ПІБ автора, за видавництвом.
+    </p>
+    <script>
+    class Author {
+        constructor(firstName, lastName, birthDate) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.birthDate = birthDate;
+        }
+    }
+    
+    class Book {
+        constructor(title, genre, description, id, author, publishingOffice) {
+            this.title = title;
+            this.genre = genre;
+            this.description = description;
+            this.id = id;
+            this.publishingOffice = publishingOffice;
+            this.author = author;
+        }
+    }
+    
+    class Library {
+        constructor(books = []) {
+            this.books = books
+        }
+    
+        addBook(newBook1) {
+            this.books.push(newBook1);
+        }
+    
+        deleteBook(idToDelete) {
+            const indexToDelete = this.books.findIndex(book => book.id === idToDelete);
+    
+            if ( indexToDelete !== - 1) {
+               this.books.splice(indexToDelete, 1)    
+               console.log(`Book with id ${idToDelete} deleted.`);
+            } else {
+               console.log(`Book with id ${idToDelete} not found.`);
+            }
+        }
+    
+        findBookByAuthorName(userName) {
+            let books = this.books.filter((book) => book.author.lastName === userName || book.author.firstName === userName)
+            return books
+        }
+     
+        findBookByPublishingOffice(userPublishingOffice) {
+            let books = this.books.filter((book) => book.publishingOffice === userPublishingOffice)
+            return books
+        }
+    
+        findBookByTitle(userTitle) {
+            let books = this.books.filter((book) => book.title === userTitle)
+            return books
+        }
+    
+        toString() {
+            let res = '';
+            this.books.forEach((book, index) => {
+                res += `${index + 1}. ${book.title} by ${book.author.firstName} ${book.author.lastName}, genre: ${book.genre}, description: ${book.description}\n`;
+            });
+            return res;
+        }
+    }
+    
+    let author1 = new Author('Arthur', 'Golden', 'September 6, 1956', 'American author');
+    let newBook1 = new Book('Memoirs of a Geisha', 'drama', 'romantic story', 4, author1, 'Sunset');
+    
+    let currentLibrary = new Library([
+        { 
+            title: 'Javascript for children',
+            genre: 'drama',
+            description: 'They say JS is hard to learn for only first ten years...',
+            id: 1,
+            author: {
+                firstName: 'Anastasia',
+                lastName: 'Aksenova',
+                birthDate: '1999',
+            },
+            publishingOffice: 'Junior`s suffering',
+        },
+        { 
+            title: 'CSS',
+            genre: 'adventure',
+            description: 'We thought CSS was hard...',
+            id: 2,
+            author: {
+                firstName: 'Tetyana',
+                lastName: 'Ivanenko',
+                birthDate: '2000',
+            },
+            publishingOffice: 'Junior`s suffering',
+        },
+        { 
+            title: 'Node.js',
+            genre: 'fantasy',
+            description: '...but that\'s already a completely another story.',
+            id: 3,
+            author: {
+                firstName: 'Tetyana',
+                lastName: 'Ivanenko',
+                birthDate: '1980',
+            },
+            publishingOffice: 'Middle`s suffering',
+        },
+    ]);
+    currentLibrary.addBook(newBook1);
+    //let userName = prompt('Введіть ім\'я або фамілію автора:(Anastasia / Aksenova / Tetyana / Ivanenko)')
+    let userPublishingOffice = prompt('Введіть назву видавництва.(Junior`s suffering/Middle`s suffering).')
+    //let userTitle = prompt('Введіть назву книги, яку хочете знайти(Javascript for children/CSS/Node.js)')
+    let idToDelete = parseInt(prompt('Яку книжку хочете видалити (вкажіть номер 1 - 4)'));
+    console.log(currentLibrary.deleteBook(idToDelete));
+    console.log(currentLibrary.toString());
+    
+    /* For methods of searching books*/
+    console.log(currentLibrary.findBookByPublishingOffice(userPublishingOffice));
+    </script>
+</body>
+</html>
