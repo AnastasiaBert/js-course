@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+</head>
+<body>
+    <h1>Task 6</h1>
+    <p> Користувач задає кількість оцінок і натискає на кнопку «get table». В результаті формується таблиця з input,
+        куди користувач вводить оцінки. Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+    </p>   
+    <label for="number">Number of scores: <input type="number" id="scores"></label>
+    <br>
+    <button id="createTable">Create table</button>
+    <br>
+    <button id="getResult">Calculate average</button>
+    <br>
+    <button id="clear">Clear fields</button>
+    <br>
+    <label for="result">Average: <input type="text" id="result"></label>
+    <script>
+      let rows = 0
+    
+      function createTable() {
+        rows = parseInt(document.getElementById('scores').value);
+        const tableEl = document.createElement('table');
+        for (let i = 0; i < rows; i++) {
+          const trEl = document.createElement('tr');
+          const tdEl = document.createElement('td');
+          const inputEl = document.createElement('input');
+          inputEl.classList.add('score')
+          tdEl.append(inputEl);
+          trEl.append(tdEl);
+          tableEl.append(trEl);
+        }
+        document.body.append(tableEl);
+      }
+
+      function clearScores() {
+        let inputScores = document.getElementsByClassName('score')
+        for (const input of inputScores) {
+          input.value = ''
+        }
+        document.getElementById('scores').value = ''
+        document.getElementById('result').value = ''
+      }
+    
+      function getResult() {
+        const inputList = document.getElementsByClassName('score');
+        let sum = 0;
+        for (const input of inputList) {
+          sum += parseInt(input.value);
+        }
+        let average = sum / rows;
+        document.getElementById('result').value = average.toFixed(2);
+      }
+    
+      window.onload = function() { 
+        document.getElementById('createTable').onclick = createTable;
+        document.getElementById('getResult').onclick = getResult;
+        document.getElementById('clear').onclick = clearScores; 
+      }
+      </script>
+</body>
+</html>

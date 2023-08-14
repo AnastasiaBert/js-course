@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+</head>
+<body>
+    <h1>Task 7</h1>
+    <p> Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто, автобус, літак -
+        випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х гідів(використати  - radio buttons). 
+        Ціни визначте самі. Підрахувати загальну вартість.
+    </p>        
+    <div>
+        <label>
+            <h3>Виберіть вид транспорту:</h3>
+            <select id="typeOfTrip">
+                <option value="1000">автобус</option>
+                <option value="1500">авто</option>
+                <option value="4500">літак</option>
+            </select>
+        </label>
+    </div>
+    <div id="food">
+        <h3>Харчування:</h3>
+        <label>
+            Сніданок
+            <input type="checkbox" value="75" />
+        </label>
+        <label>
+            Обід
+            <input type="checkbox" value="150" />
+        </label>
+        <label>
+            Вечеря
+            <input type="checkbox" value="135" />
+        </label>
+    </div>
+    <div>
+        <h3>Виберіть гіда:</h3>
+        <form>
+            <input type="radio" id="firstGuide" value="200" name="guide">
+            <label for="firstGuide">Анастасія А.А.</label><br>
+
+            <input type="radio" id="secondGuide" value="300" name="guide">
+            <label for="secondGuide">Єлизавета Є.Є.</label><br>
+
+            <input type="radio" id="thirdGuide" value="400" name="guide">
+            <label for="thirdGuide">Максим М.М.</label><br>
+        </form>
+    </div>
+    <div>
+        <br>
+        <button onclick="getTotalPrice()">Загальна вартість: </button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function getTotalPrice() {
+            const inputList = document.querySelectorAll('input');
+            let total = 0;
+            for (const input of inputList) {
+                if (input.checked) {
+                    total += parseInt(input.value);
+                }
+            }
+
+            const transpotType = document.getElementById('typeOfTrip');
+            total += parseInt(transpotType.value); 
+
+            document.getElementById('result').innerHTML = total;
+        }
+    </script>
+    </body>
+</html>

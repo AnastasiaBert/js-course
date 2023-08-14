@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+  <h1>Task 5</h1>
+  <p>
+    Користувач задає кількість рядків і стовпців. Відобразити таблицю, у клітинках якої знаходяться числа 1, 2, 3, …
+    </p>
+    <label for="rows">Number of rows: <input type="number" id="rows"></label>
+    <label for="columns">Number of columns: <input type="number" id="columns"></label>
+    <button id="result">Show result</button>
+  <script>
+    function createTable() {
+      let rows = parseInt(document.getElementById('rows').value)
+      let columns = parseInt(document.getElementById('columns').value)
+        const tableEl = document.createElement('table')
+        for (let i = 0; i < rows; i++) {
+          const trEl = document.createElement('tr')
+          for (let j = 0; j < columns; j++) {
+            const tdEl = document.createElement('td')
+            tdEl.innerText = `${j + 1}`
+            trEl.append(tdEl)
+          }
+          tableEl.append(trEl)
+        }
+        document.body.append(tableEl)
+      }
+
+      window.onload = function() { 
+        document.getElementById('result').onclick = createTable
+
+      }
+  </script>
+</body>
+</html>

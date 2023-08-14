@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p>Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3
+        і відображаються у окремих div (їх треба створити і додати на сторінку)
+    </p>
+    <button id="randomWishes">Generate random wish</button>
+    <script>
+        wishesList = [
+            'to become a senior programmer',
+            'don`t die during larning JS',
+            'eat and don`t get fat',
+            'autumn to come',
+            'the war to end',
+            'family to be near forever'
+        ]
+
+        let div = document.createElement('div')
+        let div2 = document.createElement('div')
+        let div3 = document.createElement('div')
+        document.body.append(div)
+        document.body.append(div2)
+        document.body.append(div3)
+
+        function randomWishes() {
+            let randomIndex = Math.floor(Math.random()*wishesList.length)
+            return wishesList[randomIndex]
+        }
+
+        window.onload = function () {
+           let buttonOfDisplay = document.getElementById('randomWishes')
+           buttonOfDisplay.onclick = function () {
+            let randomWish = randomWishes()
+            let randomWish2 = randomWishes()
+            let randomWish3 = randomWishes()
+            div.textContent = randomWish
+            div2.textContent = randomWish2
+            div3.textContent = randomWish3
+           }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+  <h1>Task 3</h1>
+  <p>
+    Користувач задає рік народження. Визначити кількість років користувача.
+    </p>
+    <label for="dateOfBirth">Date of birth:<input type="number" id="dateOfBirth"></label>
+    <br>
+    <button onclick="clearFields()">Clear fields</button>
+    <button onclick="getResult()">Result</button>
+    <label for="year">Result: <input type="number" id="year"></label>
+  <script>
+    function clearFields() {
+      document.getElementById('year').value = ''
+      document.getElementById('dateOfBirth').value = ''
+    }
+
+    function getResult() {
+      let date = parseInt(document.getElementById('dateOfBirth').value)
+      const currentYear = 2023
+      document.getElementById('year').value = currentYear - date
+    } 
+  </script>
+</body>
+</html>
