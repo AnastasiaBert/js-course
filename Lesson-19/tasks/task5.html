@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+  <h1>Task 5</h1>
+  <p> Відображаємо картки товарів, які користувач може вибирати. Вибраний товар має зелену рамку 
+    (при кліку робити toogle з класом вибраного елемента)ю
+  </p>
+  <div class="cards"></div>
+  <style>
+    .cards {
+      display: flex;
+      justify-content: center;
+    }
+    .card-container {
+      width: 200px;
+      margin: 100px;
+    }
+    .img-container {
+      width: 150px;
+      height: 150px;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-image {
+      width: 150px;
+      justify-content: center;
+    }
+    .border {
+      border: 7px solid green;
+    }
+  </style>
+  <script>
+    class ProductCards {
+      constructor({ imgSrc, title }) {
+        this.imgSrc = imgSrc,
+        this.title = title,
+        this.container = null
+      }
+
+      toggle() {
+        this.container.classList.toggle('border');
+      }
+      
+      render(containerSelector) {
+        const containerA = document.createElement('div')
+        containerA.className = 'card-container'
+
+        const imgContainer = document.createElement('div')
+        imgContainer.className = 'img-container'
+        containerA.append(imgContainer)
+
+        const img = document.createElement('img')
+        img.setAttribute('src', this.imgSrc)
+        img.className = 'card-image'
+        imgContainer.append(img)
+
+        const cardTitle = document.createElement('div')
+        cardTitle.className = 'card-title'
+        cardTitle.innerText = this.title
+
+        containerA.append(cardTitle)
+
+        if (containerSelector)
+          document.querySelector(containerSelector).append(containerA)
+          this.container = containerA
+        return containerA
+      }
+    }
+
+    const cards = [
+      {
+        imgSrc: './images/first-laptop.jpeg',
+        title: 'Apple air - 60.000 ua'      },
+      {
+        imgSrc: './images/second-laptop.jpg',
+        title: 'Apple air - 50.000 ua'      },
+    ]
+
+    window.onload = function () {
+      for (const cardItem of cards) {
+        const card = new ProductCards(cardItem)
+        card.render('.cards')
+        
+        card.container.addEventListener('click', function () {
+          card.toggle() 
+        })
+      }
+    }
+  </script>
+</body>
+</html>

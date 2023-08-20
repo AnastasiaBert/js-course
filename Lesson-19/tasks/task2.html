@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+  <h1>Задача 2</h1>
+  <p> 
+    Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші 
+    ...усі попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний), 
+    усі наступні на 1 більше (кожен наступне на 1 більше за попереднього)
+  </p>
+  <input class="input" type="number">
+  <input class="input" type="number">
+  <input class="input" type="number">
+  <input class="input" type="number">
+  <input class="input" type="number">
+  <style>
+    .input {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+    }
+  </style>
+  <script>
+    function specialInput(clickedInput) {
+      let nextInput = clickedInput.nextElementSibling;
+      let prevInput = clickedInput.previousElementSibling;
+      let mainValue = parseInt(clickedInput.value); // 5
+  
+      while (prevInput !== null) { 
+        mainValue = mainValue - 1; // 4
+        prevInput.value = mainValue; // 4
+        prevInput = prevInput.previousElementSibling; // 
+      }
+  
+      mainValue = parseInt(clickedInput.value);
+      while (nextInput !== null) {
+        mainValue = mainValue + 1;
+        nextInput.value = mainValue;
+        nextInput = nextInput.nextElementSibling;
+      }
+    }
+  
+    const inputList = document.querySelectorAll('.input');
+    for (const input of inputList) {
+      input.oninput = function () {
+        specialInput(this);
+      };
+    }
+  </script>
+</script>
+
+</body>
+</html>

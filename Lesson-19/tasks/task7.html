@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+</head>
+<body>
+    <h1>Task 7</h1>
+    <p>  Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top = 0) і з випадковою швидкістю рухається вниз 
+        (у setInterval викликати метод, у якому додавати крок до top). Як тільки сніжинка досягає нижньої 
+        частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині екрану (top=0).
+    </p>        
+    <div class="snowfall"></div>
+    <style>
+        body {
+          margin: 0;
+          overflow: hidden;
+          background-color: black;
+        }
+
+        .snowflake {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: white;
+          border-radius: 50%;
+          pointer-events: none;
+        }
+    </style>
+    <script>
+        const snowflakeCount = 50; 
+        const container = document.body;
+
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            container.appendChild(snowflake);
+          
+            const initialX = Math.random() * window.innerWidth;
+            const initialY = Math.random() * window.innerHeight;
+            const size = Math.random() * 20 + 10; 
+        
+            snowflake.style.left = `${initialX}px`;
+            snowflake.style.top = `${initialY}px`;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+        }
+        
+        function makeSnow() {
+            const snowflakes = document.querySelectorAll(".snowflake");
+            snowflakes.forEach(snowflake => {
+              const speed = Math.random() * 2 + 1; 
+              const currentY = parseFloat(snowflake.style.top);
+              snowflake.style.top = `${currentY + speed}px`;
+        
+              if (currentY > window.innerHeight) {
+                snowflake.style.top = "-10px";
+                snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+              }
+            });
+        
+         requestAnimationFrame(makeSnow);
+        }
+
+        makeSnow();
+    </script>
+    </body>
+</html>

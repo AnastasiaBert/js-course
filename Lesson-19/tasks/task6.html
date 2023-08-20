@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 6</title>
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+	<h1 class="text">Task 6</h1>
+	<p class="text">Дано список спортсменів. Потрібно сформувати список тих, які будуть брати участь у змаганні. 
+		При цьому є два стовпці. В одному відображені всі спортсмени, в іншому – список тих, хто був вибраний. 
+		При натисканні на зелену стрілку спортсмен переміщається у список для змагань. При натисканні на червону 
+		стрілку спортсмен переміщається у загальний список.
+	</p>
+	<div class="container">
+		<div class="addTask">
+			<input class="task-input" type="text" placeholder="Add a player">
+			<button>Add</button>
+		</div>
+		<section class="boxes">
+        <div class="box">
+	    	<ol class="list">
+	    		<h3>Загальний список</h3>
+	    	</ol>
+	    </div>
+	    	<div class="box">
+	    	<ol class="competition">
+	    		<h3>Обрані до змагань</h3>
+	    	</ol>
+	    </div>
+		</div>
+	</div>
+    <script>
+		const input = document.querySelector('input');
+		const btn = document.querySelector('.addTask > button');
+
+		btn.addEventListener('click', addList);
+		input.addEventListener('keyup', (e)=>{
+			(e.keyCode === 13 ? addList(e) : null);
+		})
+
+		function addList(e){         
+			const list = document.querySelector('.list');
+            const forCompetition = document.querySelector('.competition');
+
+			const newLi = document.createElement('li');
+            const returnToList = document.createElement('button');
+            const addToCompetition = document.createElement('button');
+
+			if (input.value !=='') {
+				newLi.textContent = input.value;
+				input.value = '';
+				list.append(newLi);
+                newLi.append(returnToList);
+                newLi.append(addToCompetition);
+                returnToList.innerHTML = '-'
+                addToCompetition.innerHTML = '+'
+                returnToList.style.display = 'none';
+			}
+          
+            returnToList.addEventListener('click', function() {
+                const parentItem = this.parentNode;
+				parentItem.remove();
+				list.append(parentItem);
+				addToCompetition.style.display = 'block';
+                returnToList.style.display = 'none';
+            });
+
+			addToCompetition.addEventListener('click', function(){
+				const parentItem= this.parentNode;
+				parentItem.remove();
+				forCompetition.append(parentItem);
+				addToCompetition.style.display = 'none';
+                returnToList.style.display = 'block';
+			});
+		}
+	</script>
+</body>
+</html>

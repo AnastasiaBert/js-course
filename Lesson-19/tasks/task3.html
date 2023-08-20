@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+  <h1>Task 3</h1>
+  <p>
+    Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість елементів 
+    у списку випадкова від 1 до 10, елементи випадкові – від 1 до 100). При натисненні на кнопку нумеровані
+    списки з парною кількістю елементів зафарбувати у зелений колір, інші у червоний.
+  </p>
+  <div id="container"></div>
+  <button id="button" onclick="colorElements()">Click on me</button>
+    <script>
+    function getRandomNumber(minNumber = 1, maxNumber = 100) {
+      let randNum = minNumber + Math.floor(Math.random()*(maxNumber - minNumber + maxNumber))
+      return randNum
+    }
+
+    function getRandomElementNumberList(min = 1, max = 10) {
+      let randElementNumber = min + Math.floor(Math.random()*(max - min + min))
+      return randElementNumber
+    }
+
+    function render() {
+      let itemList
+      for (let i = 0; i < 5; i++) {
+        let container = document.getElementById('container')
+        let ol = document.createElement('ol')
+        container.append(ol)
+        for (let i = 0; i < getRandomElementNumberList(min=1, max=10); i++) {
+          itemList = document.createElement('li')
+          itemList.innerText = `${getRandomNumber(minNumber=1, maxNumber=100)}`
+          ol.append(itemList)
+          if (parseInt(itemList.innerText) % 2 === 0) {
+            itemList.setAttribute('type', 'even');
+          } else {
+            itemList.setAttribute('type', 'odd');
+          }
+        }
+      }   
+    }
+
+    function colorElements() {
+      let listItems = document.querySelectorAll('li[type]')
+      listItems.forEach(li => {
+        let numberAttribute = li.getAttribute('type')
+        if (numberAttribute === 'even') {
+          li.style.backgroundColor = 'green'
+        } if (numberAttribute === 'odd') {
+          li.style.backgroundColor = 'red'
+        }  
+      });
+    }
+
+    window.onload = function () {
+      render()
+    }
+    </script>
+</body>
+</html>

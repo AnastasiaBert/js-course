@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p> Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок,
+        то до відповідної таблиці додається червона рамка (спробуйте додати можливість відображення кількості 
+        кліків біля назви таблиці з використанням відповідно доданого для цього атрибута).
+    </p>
+    <div id="container"></div>
+    <button id="randomTables">Generate random tables</button>
+    <style>
+        table {
+            margin: 20px;
+        }
+
+        .selectedTable {
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+    class GenerateTable {
+        constructor(minNumber = 1, maxNumber = 100, rows = 3, cols = 3, countClick) {
+            this.minNumber = minNumber,
+            this.maxNumber = maxNumber,
+            this.rows = rows,
+            this.cols = cols,
+            this.countClick = 0
+        }
+    
+        getRandomNumber() {
+            return this.minNumber + Math.floor(Math.random() * (this.maxNumber - this.minNumber + 1));
+        }
+    
+        render() {
+            let tableHtml = '<table border="1">';
+            for (let i = 0; i < this.rows; i++) {
+                tableHtml += '<tr>';
+                for (let j = 0; j < this.cols; j++) {
+                    tableHtml += '<td>' + (this.getRandomNumber()) + '</td>';
+                }
+                tableHtml += '</tr>';
+            }
+            tableHtml += '</table>';
+            return tableHtml;
+        }
+    
+
+        addBorder(table) {
+          table.classList.add('selectedTable');
+          let span = document.createElement('span')
+          table.append(span)
+          span.innerHTML = `${this.countClick += 1}`
+        }
+    }
+    
+    window.onload = function () {
+        let button = document.getElementById('randomTables');
+        let container = document.getElementById('container');
+    
+        button.addEventListener('click', function () {
+            for (let i = 0; i < 3; i++) {
+                let t1 = new GenerateTable(1, 100);
+                container.innerHTML += t1.render();
+            }
+    
+            const tableList = document.getElementsByTagName('table');
+            for (const table of tableList) {
+              table.addEventListener('click', function () {
+                let t2 = new GenerateTable(1, 100)
+                t2.addBorder(this)
+              })
+            }
+        });
+    };      
+    </script>
+</body>
+</html>
