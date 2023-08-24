@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p> На сторінці міститься певна кількість кнопок і інпутів. Підраховувати загальну кількість кліків окремо 
+        на кнопках і окремо на інпутах.
+    </p>
+    <div id="container">
+        <button>Click!</button>
+        <button>Click!</button>
+        <button>Click!</button>
+        <label for="">Just input<input type="text"></label>
+        <label for="">Just input<input type="text"></label>
+        <label for="">Just input<input type="text"></label><br>
+        <label for="">Number of clicks on the buttons: <input type="number" id="buttonClicks"></label>
+        <label for="">Number of clicks on the inputs: <input type="number" id="inputClicks"></label>
+    </div>
+    <style>
+        button, input {
+            margin: 20px;
+        }
+    </style>
+     <script>
+        let buttonClickCount = 0;
+        let inputClickCount = 0;
+        
+        container.onclick = function(event) {
+            if (event.target.tagName === 'BUTTON') {
+                buttonClickCount++
+                document.getElementById('buttonClicks').value = buttonClickCount
+            } else if (event.target.tagName === 'INPUT') {
+                inputClickCount++
+                document.getElementById('inputClicks').value = inputClickCount
+            }
+        }
+    </script>
+</body>
+</html>

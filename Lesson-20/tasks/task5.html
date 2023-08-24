@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+    <h1>Task 5</h1>
+    <p>Динамічний пошук. Є список працівників і поле пошуку. При введенні відображаються усі, які містять вказаний фрагмент.</p>
+    <input type="text" id="searchInput" placeholder="Search employees...">
+    <div id="searchResults"></div>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchResultsContainer = document.getElementById('searchResults');
+
+        const employees = [
+            { id: 1, name: 'Anastasia Bert' },
+            { id: 2, name: 'Elizabeth Akimova'},
+            { id: 3, name: 'Tetyana Bert' },
+            { id: 4, name: 'Maks Petrov' },
+            { id: 5, name: 'Victor Ivanov', },
+        ];
+
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.toLowerCase();
+            const filteredEmployees = employees.filter(employee => employee.name.toLowerCase().includes(query));
+            displayResults(filteredEmployees);
+        });
+
+        function displayResults(results) {
+            searchResultsContainer.innerHTML = '';
+        
+            if (results.length === 0) {
+                searchResultsContainer.innerHTML = '<p>No results found.</p>';
+                return;
+            }
+        
+            const ul = document.createElement('ul');
+            results.forEach(employee => {
+                const li = document.createElement('li');
+                li.textContent = employee.name; 
+                ul.appendChild(li);
+            });
+        
+            searchResultsContainer.appendChild(ul);
+        }
+    </script>
+</body>
+</html>

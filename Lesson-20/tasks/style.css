@@ -1,0 +1,100 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	height: 100vh;
+	background: #353535;
+}
+
+.text {
+	color: white;
+	margin: 40px;
+}
+
+.container{
+	max-width: 800px;
+	padding: 10px;
+	margin: 50px auto;
+}
+
+.boxes {
+	min-width: 100px;
+	margin: 20px;
+}
+
+.box {
+	border: 1px solid white;
+	margin-bottom: 50px;
+}
+
+.addTask {
+	width: 100%;
+	display: flex;
+	padding: 10px 0;
+}
+
+.addTask > input[type="text"]{
+	width: 90%;
+	color: #000000;
+	border: 2px solid #ffffff;
+	padding: 30px;
+	font-size: 22px;
+	outline: none;
+}
+
+.addTask button {
+	margin: 0 10px;
+	background: #ffffff;
+	color: #000000;
+	font-size: 18px;
+	text-transform: uppercase;
+	padding: 30px;
+	border: 1px solid white;
+	outline: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+h3 {
+	font-size: 28px;
+	margin: 20px;
+	text-align: center;
+	color: #ffffff;
+}
+
+ol {
+	list-style: none;
+}
+
+ol li {
+	width: 100%;
+	padding: 18px;
+	margin: 5px 0;
+	background: #ffffffbb;
+	font-size: 22px;
+}
+
+ol.list li{
+	background: #11ff00;
+	min-width: 700px;
+}
+
+ol.competition li{
+	background: #4c00ff;
+	min-width: 700px;
+}
+
+li button{
+	float: right;
+	padding: 5px;
+	font-size: 28px;
+	line-height: 28px;
+	margin-right: 15px;
+	background: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
