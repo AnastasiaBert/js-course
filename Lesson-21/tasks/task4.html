@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p> Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до 12, чи не канікули) та оцінку (перевіряти чи 
+        є числом, чи від 1 до 100). Вивести чи зможе він
+        виправити оцінку (якщо оцінка погана і це не останній місяць у семестрі).
+        Обробку усіх помилок зробити з використанням відповідних класів.
+    </p>
+    <h1>Grade Correction</h1>
+    
+    <label for="monthInput">The month of study:</label>
+    <input type="number" id="monthInput" min="1" max="12">
+    <br>
+    
+    <label for="gradeInput">The student's grade:</label>
+    <input type="number" id="gradeInput" min="2" max="5">
+    <br>
+    
+    <button id="button">Correct Grade</button>
+    
+    <p id="result"></p>
+    <script>
+        class InvalidMonthError extends Error {
+            constructor(message) {
+                super(message);
+                this.name = "InvalidMonthError";
+            }
+        }
+        
+        class InvalidGradeError extends Error {
+            constructor(message) {
+                super(message);
+                this.name = "InvalidGradeError";
+            }
+        }
+        
+        class SemesterEndError extends Error {
+            constructor(message) {
+                super(message);
+                this.name = "SemesterEndError";
+            }
+        }
+        
+        class HolidayError extends Error {
+            constructor(message) {
+                super(message);
+                this.name = "HolidayError";
+            }
+        }
+        
+        function isValidMonth(month) {
+            if (isNaN(month)) {
+                throw new InvalidMonthError("Month should be a number");
+            }
+            const monthNum = parseInt(month);
+            if (monthNum < 1 || monthNum > 12) {
+                throw new InvalidMonthError("Month should be between 1 and 12");
+            }
+
+            if ([7, 8, 9].includes(monthNum)) {  
+                throw new HolidayError("No classes on holidays");
+            }
+        }
+        
+        function isValidGrade(grade) {
+            if (isNaN(grade)) {
+                throw new InvalidGradeError("Grade should be a number");
+            }
+            const gradeNum = parseInt(grade);
+            if (gradeNum < 2 || gradeNum > 5) {
+                throw new InvalidGradeError("Grade should be between 2 and 5");
+            }
+        }
+        
+        function correctGrade(grade, month) {
+            isValidMonth(month);
+            isValidGrade(grade);
+            if (parseInt(grade) === 2 && parseInt(month) !== 5) { 
+                grade = "4";  
+            }
+            return grade;
+        }
+        
+        function correctAndDisplayGrade() {
+            const studentMonth = document.getElementById("monthInput").value;
+            const studentGrade = document.getElementById("gradeInput").value;
+            
+            try {
+                const correctedGrade = correctGrade(studentGrade, studentMonth);
+                document.getElementById("result").textContent = "Corrected Grade: " + correctedGrade;
+            } catch (error) {
+                if (
+                    error instanceof InvalidMonthError ||
+                    error instanceof InvalidGradeError ||
+                    error instanceof SemesterEndError ||
+                    error instanceof HolidayError
+                ) {
+                    document.getElementById("result").textContent = "Error: " + error.message;
+                } else {
+                    document.getElementById("result").textContent = "An error occurred: " + error;
+                }
+            }
+        }
+
+        window.onload = function () {
+            const buttonCorrectGrade = document.getElementById("button")
+            buttonCorrectGrade.onclick = correctAndDisplayGrade
+        }
+    </script>
+</body>
+</html>

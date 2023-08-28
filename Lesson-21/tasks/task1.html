@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+  <h3> Задача 1</h3>
+  <h4> Створити клас Client: </h4>
+    <p>Властивості:</p>
+    ID
+    ПІБ
+    Кількість грошей на рахунку
+    <p>Методи:</p>
+    Додавання грошей
+    Зняття грошей
+    ToString
+    <h4>На основі цього класу створити клас GoldenClient:</h4>
+    <p>Властивості</p>
+    ID
+    ПІБ
+    Кількість грошей на рахунку
+    Ліміт кредитних коштів
+    Відсоток за використання кредитних коштів
+    <p>Методи</p>
+    Додавання грошей
+    Зняття грошей
+    Визначення пені за використання кредитних коштів
+    ToString
+    <div id="box">
+    </div>
+      <style>
+        .container {
+          margin: 20px;
+          display: flex;
+          flex-direction: column;
+          max-width: 400px;
+          text-align: center;
+        }
+
+        .showMoney {
+          margin: 20px;
+          font-weight: bold;
+          background-color: aquamarine;
+          text-align: center;
+          max-width: 400px;
+        }
+
+        .button-withdraw {
+          font-weight: bold;
+        }
+
+        .showCreditMoney {
+          margin: 20px;
+          font-weight: bold;
+          background-color: aquamarine;
+          text-align: center;
+          max-width: 200px;
+        }
+    </style>
+  <script>
+    // Поки що через консоль, трошки пізніше повернуся до цього завдання і виведу це на екран 
+    class Client {
+      constructor(id, fullName, accountBalance) {
+        this.id = id;
+        this.fullName = fullName;
+        this.accountBalance = accountBalance;
+      }
+    
+      addMoney(amount) {
+        this.accountBalance += amount;
+      }
+    
+      withdrawMoney(amount) {
+        if (amount <= this.accountBalance) {
+          this.accountBalance -= amount;
+        } else {
+          console.log("Insufficient funds.");
+        }
+      }
+    
+      toString() {
+        return `id: ${this.id}, Full Name: ${this.fullName}, Account Balance: ${this.accountBalance}`;
+      }
+    }
+    
+    class GoldenClient extends Client {
+      constructor(id, fullName, accountBalance, creditAmount, interestRate) {
+        super(id, fullName, accountBalance);
+        this.creditAmount = creditAmount;
+        this.interestRate = interestRate;
+      }
+    
+      addMoney(amount) {
+        if (amount >= this.creditAmount) {
+          this.accountBalance += amount - this.creditAmount;
+        } else {
+          this.accountBalance += amount;
+        }
+      }
+    
+      withdrawCreditMoney(amount) {
+        if (amount <= this.creditAmount) {
+          this.creditAmount -= amount;
+          this.accountBalance -= amount;
+        } else {
+          const penalty = this.determinePenalty();
+          console.log(`Withdrawal amount exceeds credit amount. Penalty: ${penalty}`);
+          this.accountBalance -= (this.creditAmount + penalty);
+          this.creditAmount = 0;
+          }
+        }
+    
+        determinePenalty() {
+          return this.creditAmount * this.interestRate;
+        }
+      }
+    
+      const client1 = new Client(1, 'Anastasia', 1000);
+      const goldenClient1 = new GoldenClient(2, 'Elizaveta', 500, 1000, 0.05);
+      
+      console.log(client1.toString());
+      console.log(goldenClient1.toString());
+  
+      // Add money 
+      client1.addMoney(200);
+      goldenClient1.addMoney(700);
+      console.log("\nAfter adding money:");
+      console.log(client1.toString());
+      console.log(goldenClient1.toString());
+      
+      // Withdraw money 
+      client1.withdrawMoney(300);
+      goldenClient1.withdrawCreditMoney(800);
+      console.log("\nAfter withdrawals:");
+      console.log(client1.toString());
+      console.log(goldenClient1.toString());
+      
+      const creditPenalty = goldenClient1.determinePenalty();
+      console.log(`\nCredit Penalty for ${goldenClient1.fullName}: $${creditPenalty.toFixed(2)}`);
+
+      //---- КЛАС ПРЕДОК -----
+      /*
+      class Client {
+        constructor(id, userName, userSurname, moneyBalance) {
+          this.id = id,
+          this.userName = userName,
+          this.userSurname = userSurname,
+          this.moneyBalance = moneyBalance
+        }
+
+        addMoney() {
+          this.moneyBalance += parseInt(this.input.value)
+          this.showUpdatedBalance()
+        }
+
+        withdrawMoney() {
+          if (this.moneyBalance >= parseInt(this.input.value)) {
+            this.moneyBalance -= parseInt(this.input.value)
+            this.showUpdatedBalance()
+          } else {
+            console.log('There isn`t enough money')
+          }
+        }
+
+        showUpdatedBalance() {
+          const showUpdatedMoney = document.querySelector('.showMoney')
+          showUpdatedMoney.innerText = this.toString()
+        }
+
+        render(containerSelector) {
+          const container = document.createElement('div')
+          container.className = 'container'
+          const label = document.createElement('label')
+          label.innerText = 'Введіть суму:'
+          container.append(label)
+
+          this.input = document.createElement('input')
+          this.input.setAttribute('type', 'number')
+          container.append(this.input)
+
+          const buttonAdd = document.createElement('button')
+          buttonAdd.innerText = 'Додати гроші'
+          buttonAdd.onclick = this.addMoney.bind(this)
+          container.append(buttonAdd)
+
+          const buttonWithdraw = document.createElement('button')
+          buttonWithdraw.innerText = 'Зняти гроші'
+          buttonWithdraw.className = 'button-withdraw'
+          buttonWithdraw.onclick = this.withdrawMoney.bind(this)
+          container.append(buttonWithdraw)
+
+          const showBalance = document.createElement('div')
+          showBalance.className = 'showMoney'
+          showBalance.innerText = this.toString()
+          container.append(showBalance)
+
+          if (containerSelector) {
+            document.querySelector(containerSelector).append(container)
+          }
+        }
+        toString() {
+          return `На рахунку зараз: ${this.moneyBalance}`
+        }
+      }
+      
+      class GoldClient extends Client {
+        constructor(id, userName, userSurname, moneyBalance, limitOfCreditMoney, percentOFCreditFund) {
+          super(id, userName, userSurname, moneyBalance)
+          this.limitOfCreditMoney = limitOfCreditMoney,
+          this.percentOFCreditFund = percentOFCreditFund
+        }
+
+        withdrawCreditMoney() {
+          if (this.moneyBalance >= parseInt(this.input.value)) {
+            this.moneyBalance -= parseInt(this.input.value);
+            this.showUpdatedBalance()
+          } else {
+            const remainingCredit = parseInt(this.input.value) - this.moneyBalance;
+            if (this.limitOfCreditMoney >= remainingCredit) {
+              this.limitOfCreditMoney -= remainingCredit;
+              this.moneyBalance = 0;
+              this.showUpdatedCreditBalance()
+            } else {
+              console.log('There isn`t enough money')
+            }  
+          }
+        }
+
+        showUpdatedCreditBalance() {
+          const showUpdatedMoney = document.querySelector('.showCreditMoney')
+          showUpdatedMoney.innerText = this.toString()
+        }
+
+        render(containerSelector) {
+          super.render(containerSelector)
+          const creditMoneyBox = document.createElement('div')
+          creditMoneyBox.className = 'showCreditMoney'
+          creditMoneyBox.innerText = this.toString() 
+          if (this.moneyBalance < parseInt(this.input.value)) {
+          const buttonWithdraw = document.querySelector('.button-withdraw')
+          buttonWithdraw.onclick = this.withdrawCreditMoney.bind(this)
+          }  
+          
+          if (containerSelector) 
+          document.querySelector(containerSelector).append(creditMoneyBox)
+        }
+
+        toString() {
+          return (`Грошей на рахунку: ${this.moneyBalance}  Кредитні гроші: ${this.limitOfCreditMoney}`)
+        }
+      }
+
+    
+        window.onload = function () {
+         const client3 = new GoldClient(3, 'Elizaveta', 'Antonova', 100000, 20000, 10)
+         client3.render('#box')
+        }
+    */
+    </script>
+</body>
+</html>

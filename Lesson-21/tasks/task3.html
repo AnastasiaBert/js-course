@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+  <h1>Task 3</h1>
+  <p>
+   Розробити Класи
+   House
+   --- властивості ---
+   Координата Х
+   Координата У
+   шлях до зображення
+   інтервал оновлення
+   --- методи ---
+   генерування елемента розмітки
+   оновлення через вказаний інтервал (збільшення або зменшення масштабу (об’єкт не рухається))
+   Dog
+   --- властивості ---
+   Координата Х
+   Координата У
+   шлях до зображення
+   інтервал оновлення
+   --- методи ---
+   генерування елемента розмітки
+   оновлення через вказаний інтервал (випадкове зміщення по горизонталі (зміна координати Х))
+   Bird
+   --- властивості ---
+   Координата Х
+   Координата У
+   шлях до зображення
+   інтервал оновлення
+   --- методи ---
+   генерування елемента розмітки
+   оновлення через вказаний інтервал (випадкове переміщення у довільному напрямку)
+  </p>
+  <div id="container"></div>
+  <style>
+    p {
+        display: none;
+    }
+  </style>
+  <script>    
+    class House {
+        constructor(xCoordinate, yCoordinate, imagePath, updateInterval) {
+            this.xCoordinate = 100,
+            this.yCoordinate = 100,
+            this.imagePath = imagePath,
+            this.updateInterval = updateInterval
+        }
+    
+        generatePositionOfElement() {
+            const element = document.createElement('div')
+            element.style.position = 'absolute'
+            element.style.left = this.xCoordinate + 'px'
+            element.style.top = this.yCoordinate + 'px'
+            element.innerHTML = `<img src="${this.imagePath}">`
+            return element
+        }
+    
+        update() {
+            console.log('Updating house:', this.xCoordinate)
+        }
+    }
+
+    class Dog extends House {
+        constructor(xCoordinate, yCoordinate, imagePath, updateInterval) {
+            super(xCoordinate, yCoordinate, imagePath, updateInterval)
+        }
+    
+        update() {
+            this.xCoordinate += Math.random() * 20 - 10         
+            console.log('Updating dog:', this.xCoordinate)
+        }
+    }
+
+    class Bird extends House {
+        constructor(xCoordinate, yCoordinate, imagePath, updateInterval) {
+            super(xCoordinate, yCoordinate, imagePath, updateInterval)
+        }
+    
+        update() {
+            this.xCoordinate += Math.random() * 30 - 15
+            this.yCoordinate += Math.random() * 30 - 15 
+            console.log('Updating bird:', this.xCoordinate, this.yCoordinate)
+        }
+    }
+
+    const container = document.getElementById('container')
+
+    const house = new House(100, 100, "house.png")
+    const dog = new Dog(200, 20, "dog.png")
+    const bird = new Bird(50, 30, "bird.png")
+
+    setInterval(() => {
+        dog.update()
+        bird.update()
+        house.update()
+    
+        container.innerHTML = ''
+    
+        container.append(dog.generatePositionOfElement())
+        container.append(bird.generatePositionOfElement())
+        container.append(house.generatePositionOfElement())
+    }, 1000);
+    </script>
+</body>
+</html>

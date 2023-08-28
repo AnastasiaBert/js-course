@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+  <h1>Задача 2</h1>
+  <p> Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції:
+      Вивести усіх простих клієнтів.
+      Вивести усіх клієнтів GoldenClient.
+      Знати сумарну кількість грошей на рахунку.
+  </p>
+  <div id='bank-info'></div>
+    <script>
+      class Client {
+        constructor(name, accountType, balance) {
+          this.name = name;
+          this.accountType = accountType;
+          this.balance = balance;
+        }
+      }  
+
+      class Bank {
+          constructor() {
+            this.clients = [];
+          }  
+
+          addCustomer(client) {
+            this.clients.push(client);
+          }  
+
+          render() {
+            const bankInfoDiv = document.getElementById('bank-info');
+            bankInfoDiv.innerHTML = '<h2>Bank Customers</h2>';  
+            bankInfoDiv.innerHTML += '<h4>Regular Customers</h4>';
+
+            const regularCustomers = this.clients.filter(client => client.accountType === 'Regular');
+            regularCustomers.forEach(client => {
+              bankInfoDiv.innerHTML += `<p>Name: ${client.name}, Account Type: ${client.accountType}, Balance: ${client.balance}</p>`;
+            });  
+
+            bankInfoDiv.innerHTML += '<h4>Golden Clients</h4>';
+            const goldenClients = this.clients.filter(client => client.accountType === 'GoldenClient');
+            
+            goldenClients.forEach(client => {
+              bankInfoDiv.innerHTML += `<p>Name: ${client.name}, Account Type: ${client.accountType}, Balance: ${client.balance}</p>`;
+            });  
+
+            const totalMoney = this.clients.reduce((sum, client) => sum + client.balance, 0);
+            bankInfoDiv.innerHTML += `<p> Total Amount in the Bank: ${totalMoney} </p>`;
+          }
+      }  
+      
+      const client1 = new Client('Anastasia', 'Regular', 5000);
+      const client2 = new Client('Maksim', 'GoldenClient', 10000);
+      const client3 = new Client('Tetyana', 'Regular', 7500);  
+      
+      const bank = new Bank();  
+      
+      bank.addCustomer(client1);
+      bank.addCustomer(client2);
+      bank.addCustomer(client3);  
+     
+      bank.render();
+  </script>
+</body>
+</html>
