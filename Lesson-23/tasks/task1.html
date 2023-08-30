@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1 - 15</title>
+</head>
+<body>
+  <h3>Task 1 - 15</h3>
+  <p>Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+    Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+    Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+    Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
+    Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.
+    Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+    Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.
+    Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.
+    Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm- місяць, yyyy- рік).
+    Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.
+    Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+    Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)
+    Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+    Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+    Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл.  Замінити пробіл на дефіс.
+    </p>
+    <div id="result">
+    </div>
+  <script>
+    // Task 1 //
+    const arrOfStrings = ['peace88', 'love', 'freedom', 'hope88', '3ddd']
+    const stringWithNum = arrOfStrings.filter(string => /\d/.test(string))
+
+    // Task 2 //
+    const stringWithoutNum =  arrOfStrings.filter(string => !/\d/.test(string))
+
+    // Task 3 //
+    const stringContainsVowels = arrOfStrings.filter(string => /[aeiouAEIOU]/.test(string))
+
+    // Task 4 //
+    const stringContainsNoVowels = arrOfStrings.filter(string => !/[aeiouAEIOU]/.test(string))
+
+    // Task 5 //
+    const stringContains13 = arrOfStrings.filter(string => /[13]/.test(string))
+
+    // Task 6 //
+    const text = "888 I could do it, because they said I couldn`t. 888";
+
+    const numbersFromText = text.match(/\d+/g);
+
+    // Task 7 //
+    const punctuationMarks = text.match(/[.,!?;:]/g);
+
+    // Task 8 //
+    const components = text.split(/[.,!?;:]/);
+    
+    // Task 9 //
+    const isContainsDate = /\b\d{2}\.\d{2}\.\d{4}\b/.test(text)
+
+    // Task 10 //
+    const isContsinsTwoDigitsNum = text.match(/\b\d{2}\b/g);
+    const countTwoDigitsNum = isContsinsTwoDigitsNum ? isContsinsTwoDigitsNum.length : 'Немає двоцифрових чисел';
+
+    // Task 11 //
+    const isContainsCardNumber = text.match(/\b\d{4}-\d{4}-\d{4}-\d{4}\b/g)
+    const isCardNumber = isContainsCardNumber ? 'Є номер карти' : 'Немає карти'
+
+    // Task 12 //
+    const address = "https://www.youtube.com/";
+    const isGovernmentSite = /\b\.gov\b/.test(address);
+    const isGovAddress = isGovernmentSite ? 'Так' : 'Ні'
+
+    // Task 13 //
+    const text2 = "It`s 2023. It was 2019 four years ago.";
+    const yearsAfter2021 = text2.match(/202[2-9]|20[3-9]\d/g);
+
+    // Task 14 // 
+    const phoneNumber = "+38095000000"; 
+    const isUkrainianNumber = /^\+38/.test(phoneNumber);
+    const isUkrNum = isUkrainianNumber ? 'Так' : 'Ні'
+
+    // Task 15 //
+    const fullName = "Anastasia Akimova"; 
+    const addedSymbolToName = fullName.replace(/\s+/, '-');
+
+    // Display results
+    let task1 = document.getElementById('result');
+    task1.innerHTML = `<p>Task 1: ${stringWithNum}</p>
+    <p>Task 2: ${stringWithoutNum}</p>
+    <p>Task 3: ${stringContainsVowels}</p>
+    <p>Task 4: ${stringContainsNoVowels}</p>
+    <p>Task 5: ${stringContains13}</p>
+    <p>Task 6: ${numbersFromText}</p>
+    <p>Task 7: ${punctuationMarks}</p>
+    <p>Task 8: ${components}</p>
+    <p>Task 9: ${isContainsDate}</p>
+    <p>Task 10: ${countTwoDigitsNum}</p>
+    <p>Task 11: ${isCardNumber}</p>
+    <p>Task 12: ${isGovAddress}</p>
+    <p>Task 13: ${yearsAfter2021}</p>
+    <p>Task 14: ${isUkrNum}</p>
+    <p>Task 15: ${addedSymbolToName}</p>
+    `
+  </script>
+</body>
+</html>

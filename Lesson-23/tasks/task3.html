@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 17</title>
+</head>
+<body>
+    <h1>Задача 17</h1>
+    <p>
+    Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи є це день вихідним.
+    </p>
+    <label>Введіть день: <input id='dayInput'></label>
+      <button id="format-btn">click</button>
+      <div id="result"></div>
+      <script>
+      // Task 17 
+        function isWeekend() {
+            const dayInput = document.getElementById('dayInput').value;
+  
+            if (!isNaN(dayInput)) {
+                const day = parseInt(dayInput);
+                switch (day) {
+                    case 1:
+                        return 'Working day (Mon)';
+                    case 2:
+                        return 'Working day (Tue)';
+                    case 3:
+                        return 'Working day (Wed)';
+                    case 4:
+                        return 'Working day (Thu)';
+                    case 5:
+                        return 'Working day (Fri)';
+                    case 6:
+                        return 'Weekend (Sat)';
+                    case 7:
+                        return 'Weekend (Sun)';
+                    default:
+                        throw new Error('Invalid input');
+                }
+            } else {
+                throw new Error('Invalid input');
+            }
+        }
+  
+        window.onload = function () {
+            const formatBtn = document.getElementById('format-btn');
+            const display = document.getElementById('result');
+          
+            formatBtn.onclick = function () {
+                try {
+                    const getDay = isWeekend();
+                    display.innerHTML = `<p>Task 17:</p><p>${getDay}</p>`;
+                } catch (error) {
+                    display.innerHTML = `<p>Error: ${error.message}</p>`;
+                }
+            };
+        };
+  </script>
+</body>
+</html>
