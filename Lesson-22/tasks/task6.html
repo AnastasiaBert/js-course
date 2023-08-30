@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+</head>
+<body>
+  <h3> Задача 6</h3>
+    <p> Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.</p>
+    <div id="box">
+    </div>
+    <script>
+      function getDateOfReturn() {
+        const returnDate = new Date();
+        const vocationNumDays = 56
+        returnDate.setDate(returnDate.getDate() + vocationNumDays);
+        return returnDate;
+      }
+
+      const displayDiv = document.getElementById('box')
+      const dateOfReturn = getDateOfReturn()
+      displayDiv.innerText = `Користувач повернеться на роботу ${dateOfReturn}`
+    </script>
+</body>
+</html>

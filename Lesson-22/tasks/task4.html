@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Задача 4</h1>
+    <p> Вивести назву дня.
+    </p>
+    <div id="dateDisplay"></div>
+    <script>
+        function getDayName(dayIndex) {
+            switch (dayIndex) {
+              case 0:
+                return 'Sunday';
+              case 1:
+                return 'Monday';
+              case 2:
+                return 'Tuesday';
+              case 3:
+                return 'Wednesday';
+              case 4:
+                return 'Thursday';
+              case 5:
+                return 'Friday';
+              case 6:
+                return 'Saturday';
+              default:
+                return 'Invalid day index';
+            }
+        }
+
+        const currentDate = new Date();
+        const dayIndex = currentDate.getDay();
+        const dayName = getDayName(dayIndex);
+        const dateDisplayDiv=  document.getElementById('dateDisplay')
+        dateDisplayDiv.innerText = dayName
+    </script>
+</body>
+</html>

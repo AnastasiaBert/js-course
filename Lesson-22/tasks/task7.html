@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+</head>
+<body>
+    <h1>Задача 7</h1>
+    <p>Користувач бере авто на вказану кількість годин. Визначити кінцевий час повернення.</p>
+    <label>
+        Введіть на скільки годин ви хочете орендувати машину:
+        <input type="number" id="input">
+    </label>
+    <button id="buttonCalc">Розрахувати час повернення</button>
+    <div id="displayResult"></div>
+    <script>
+        function calculateReturnTime() {
+            const currentDate = new Date(); 
+            const userHours = parseInt(document.getElementById('input').value); 
+            
+            const returnDate = new Date(currentDate.getTime() + userHours * 60 * 60 * 1000);     
+            return returnDate;
+        }
+
+        window.onload = function () {
+            const calculateHours = document.getElementById('buttonCalc');
+            const displayDiv = document.getElementById('displayResult');
+            
+            calculateHours.onclick = function () {
+                const returnTime = calculateReturnTime();
+                displayDiv.innerText = `Вам треба повернути машину ${returnTime.toLocaleString()}`;
+            };
+        };
+    </script>
+</body>
+</html>

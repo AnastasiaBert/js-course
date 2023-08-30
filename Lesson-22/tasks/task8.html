@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+</head>
+<body>
+    <h1>Задача 8</h1>
+    <p>Задаємо користувачу задачу з додавання двох чисел. Визначити скільки секунд було використано для розв’язання задачі.</p>
+    <button id="buttonStart">Старт</button>
+    <div id="displayTime"></div>
+    <script>
+        window.onload = function () {
+            const buttonStart = document.getElementById('buttonStart');
+            const displayTime = document.getElementById('displayTime');
+        
+            const startTimer = () => {
+                const startTime = new Date().getTime();
+        
+                const calculateTimeTaken = () => {
+                    const endTime = new Date().getTime();
+                    const calculationTime = (endTime - startTime) / 1000;
+        
+                    return calculationTime;
+                };
+        
+                buttonStart.onclick = function () {
+                    const test1 = parseInt(prompt('3 + 4?'));
+                    if (test1 === 7) {
+                        const timeForCalculating = calculateTimeTaken();
+                        displayTime.innerText = `Час, витрачений на вирішення: ${timeForCalculating.toFixed(2)} секунд`;
+                    } else {
+                        displayTime.innerText = 'Відповідь неправильна :(';
+                    }
+                };
+            };
+        
+            buttonStart.addEventListener('click', startTimer);
+        };
+    </script>
+</body>
+</html>

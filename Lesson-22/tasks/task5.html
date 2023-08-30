@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+  <h3>Задача 5</h3>
+  <p>Користувач вводить дату народження. Визначити, скільки йому повних років.</p>
+  <label for="enterDateOfBirth">Enter your date of birth:</label>
+  <input type="date" id="enterDateOfBirth" />
+  <button onclick="calculateAge()">Calculate Age</button>
+  <p id="ageDisplay"></p>  
+  <script>
+    function calculateAge() {
+      const ageInput = document.getElementById('enterDateOfBirth');
+      const ageDisplay = document.getElementById('ageDisplay');
+  
+      const inputValue = new Date(ageInput.value);
+      const today = new Date();
+
+      if (isNaN(inputValue)) {
+        ageDisplay.textContent = 'Invalid date format';
+        return;
+      }
+
+      const ageInMilliseconds = today - inputValue;
+      const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365);
+      const age = Math.floor(ageInYears);
+
+      ageDisplay.textContent = `You are ${age} years old.`;
+    }
+  </script>
+</body>
+</html>

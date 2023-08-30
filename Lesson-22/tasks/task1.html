@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+  <h3> Задача 1</h3>
+  <p>Визначити привітання у залежності від часу доби (Доброго дня, Доброго ранку, Доброго вечора).</p>
+    <div id="date">
+    </div>
+  <script>
+    function getGreeting() {
+      const currentTime = new Date();
+      const currentHour = currentTime.getHours();
+    
+      let greeting;
+    
+      if (currentHour < 12) {
+        greeting = 'доброго ранку';
+      } else if (currentHour < 18) {
+        greeting = 'доброго дня';
+      } else {
+        greeting = 'доброго вечора';
+      }
+      return greeting;
+    }
+
+    const greeting = getGreeting();
+    let displayDate = document.getElementById('date');
+    displayDate.innerHTML = `Дорогий користувач, ${greeting}`
+  </script>
+</body>
+</html>

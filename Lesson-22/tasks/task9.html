@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 9</title>
+</head>
+<body>
+  <h1>Задача 9</h1>
+  <p>Дано дата виробництва йогурта (вводимо рік, місяць, день) та кількість днів придатності. Визначити чи є він придатним на даний момент.</p>
+  <div id='display-result'></div>
+    <script>
+      function isYogurtFresh(productionDate, expirationDays) {
+        const productionProductDate = new Date(productionDate);
+        const expirationDate = new Date(productionProductDate);
+        expirationDate.setDate(productionDate.getDate() + expirationDays);
+
+        const currentDate = new Date();
+        if (currentDate <= expirationDate) {
+          return true; 
+        } else {
+          return false; 
+        }
+      }
+
+      const productionDate = new Date(2023, 7, 15); 
+      const expirationDays = 30; 
+      
+      const isGood = isYogurtFresh(productionDate, expirationDays);
+      const displayDiv = document.getElementById('display-result')
+      if (isGood) {
+        displayDiv.innerText = 'Можна їсти.'
+      } else {
+        displayDiv.innerText = 'Краще не треба...'
+      }
+  </script>
+</body>
+</html>

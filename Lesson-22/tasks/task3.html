@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+  <h1>Задача 3</h1>
+  <p>
+    Визначити поточну пору року.
+  </p>
+  <div id="container"></div>
+  <script>    
+    function getCurrentSeason() {
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth() + 1; 
+      if (currentMonth >= 3 && currentMonth <= 5) {
+        return 'Spring';
+      } else if (currentMonth >= 6 && currentMonth <= 8) {
+        return 'Summer';
+      } else if (currentMonth >= 9 && currentMonth <= 11) {
+        return 'Autumn';
+      } else {
+        return 'Winter';
+      }
+    }
+
+   const season = getCurrentSeason();
+   const dateDisplay = document.getElementById('container')
+   dateDisplay.innerText = season
+  </script>
+</body>
+</html>

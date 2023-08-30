@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 10</title>
+</head>
+<body>
+  <h1>Задача 10</h1>
+  <p>Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування бульбашкою і вставкою.</p>
+  <div id='display'></div>
+  <script>
+    // 1. Створюємо функцію генерування рандомного числа 
+      function getRandomNum(min, max) {
+        return min + Math.floor(Math.random() * (max - min + 1))
+      }
+
+    // 2. Функція генерування масиву
+      function generateRandomArray(numOfElements, min, max) {
+        const arr = []
+        for (let i = 0; i < numOfElements; i++) {
+          arr.push(getRandomNum(min, max))
+        }
+        return arr
+      }
+
+    // 3. Сортування будьбашкою
+      function bubbleSort(arr) {
+        let swapped
+        do {
+          swapped = false;
+          for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+              [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
+              swapped = true
+            }
+          }
+        } while (swapped)
+      }
+
+    // 4. Сортування включенням
+      function insertionSort(arr) {
+        for (let i = 1; i < arr.length; i++) {
+          const current = arr[i]
+          let j = i - 1
+          while (j >= 0 && arr[j] > current) {
+            arr[j + 1] = arr[j]
+            j--
+          }
+          arr[j + 1] = current
+        }
+      }
+
+    const arrayNumOfElements = 1000
+    const minValue = 1
+    const maxValue = 800
+    
+    const randomArray = generateRandomArray(arrayNumOfElements, minValue, maxValue);
+    
+    const bubbleStart = new Date();
+    bubbleSort(randomArray.slice()); 
+    const bubbleEnd = new Date();
+    const bubbleSortTime = bubbleEnd - bubbleStart;
+    
+    const insertionStart = new Date();
+    insertionSort(randomArray); 
+    const insertionEnd = new Date();
+    const insertionSortTime = insertionEnd - insertionStart;
+
+    const displayDiv = document.getElementById('display')
+    displayDiv.innerHTML = `<h3>Bubble Sort Time:</h3>
+                            <p>${bubbleSortTime} ms</p>
+                            <h3>Insertion Sort Time:</h3>
+                            <p>${insertionSortTime} ms</p>
+                          `
+   </script>
+</body>
+</html>

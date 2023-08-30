@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+  <h1>Задача 2</h1>
+  <p> Вивести дату у форматі
+    “місяць – рік – вихідний/робочий”    
+  </p>
+  <div id="date"></div>
+    <script>
+      function getTypeOfDay(date) {
+        let displayDate = document.getElementById('date');
+        const currentDate = new Date();
+        const dayOfMonth = currentDate.getDate();
+        if (date.getDay() > 0 && date.getDay() < 6) 
+          displayDate.innerHTML = `${dayOfMonth}.${date.getMonth() + 1}.${date.getFullYear()} - Робочий день`;
+        else 
+          displayDate.innerHTML = `${dayOfMonth}.${date.getMonth() + 1}.${date.getFullYear()} - Вихідний`;
+      }
+
+      const currentDate = new Date(); 
+      getTypeOfDay(currentDate);
+    </script>
+</body>
+</html>
