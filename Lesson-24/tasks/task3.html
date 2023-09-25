@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+    <h1>Задача 3</h1>
+    <p>
+        Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача зберігається логін). Підрахувати для кожного клієнта кількість відвідувань.
+    </p>
+  <script>
+    const loginsVisitsNum = [
+      "angel",
+      "angel",
+      "peace",
+      "sunflower",
+    ];
+    
+    const clientVisitCountMap = new Map();
+    
+    loginsVisitsNum.forEach((login) => {
+      if (clientVisitCountMap.has(login)) {
+        clientVisitCountMap.set(login, clientVisitCountMap.get(login) + 1);
+      } else {
+        clientVisitCountMap.set(login, 1);
+      }
+    });
+    
+    clientVisitCountMap.forEach((count, login) => {
+      console.log(`Відвідувач з логіном ${login} заходив на сайт ${count} рази(ів).`);
+    });
+  </script>
+</body>
+</html>

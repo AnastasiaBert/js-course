@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+</head>
+<body>
+    <h1>Задача 7</h1>
+    <p>Користувач може змінювати колір фону, що вибирає користувач з використанням інпута.
+        Зберігати цей колір і відновлювати при наступному відкритті. Також зберігати і відображати кількість змін протягом одного сеансу.
+    </p>
+        <label for="colorPicker">Choose a background color:</label>
+        <input type="color" id="colorPicker">
+        <p>Кількість змін кольору під час роботи: <span id="sessionChangeCount">0</span></p>
+        <p>Загальна кількість змін кольору: <span id="totalChangeCount">0</span></p>
+    <script>
+        function setBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+            const sessionChangeCount = parseInt(sessionStorage.getItem('sessionChangeCount')) || 0;
+            sessionStorage.setItem('sessionChangeCount', sessionChangeCount + 1);
+            document.getElementById('sessionChangeCount').textContent = sessionChangeCount + 1;
+    
+            const totalChangeCount = parseInt(localStorage.getItem('totalChangeCount')) || 0;
+            localStorage.setItem('totalChangeCount', totalChangeCount + 1);
+            document.getElementById('totalChangeCount').textContent = totalChangeCount + 1;
+        }
+    
+        window.addEventListener('load', function () {
+            sessionStorage.setItem('sessionChangeCount', '0');
+            const sessionChangeCount = parseInt(sessionStorage.getItem('sessionChangeCount')) || 0;
+            document.getElementById('sessionChangeCount').textContent = sessionChangeCount;
+        });
+    
+        document.getElementById('colorPicker').addEventListener('input', function (event) {
+            const selectedColor = event.target.value;
+            setBackgroundColor(selectedColor);
+            sessionStorage.setItem('backgroundColor', selectedColor);
+        });
+    
+        const storedBackgroundColor = sessionStorage.getItem('backgroundColor');
+        if (storedBackgroundColor) {
+            setBackgroundColor(storedBackgroundColor);
+        }
+    </script>
+</body>
+</html>
+  

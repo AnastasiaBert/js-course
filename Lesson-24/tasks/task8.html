@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+</head>
+<body>
+    <h1>Задача 8</h1>
+    <p> Зберігати у пам’яті список справ, які користувачу треба виконати (зберігати у localStorage). 
+        Періодично випадковим чином вибирати якусь з справ і виводити користувачу (з використанням confirm). 
+        Якщо користувач натискає на «Ок», то видаляти цю задачу.
+    </p>
+    <script>
+        function getRandomTask(tasks) {
+            const randomIndex = Math.floor(Math.random() * tasks.length);
+            return tasks[randomIndex];
+        }
+
+        function displayAndDeleteTask() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            if (tasks.length === 0) {
+                alert('No tasks remaining.');
+                return;
+            }
+            const randomTask = getRandomTask(tasks);
+            const confirmation = confirm(`Task: ${randomTask}\n\nClick OK to delete this task.`);
+
+            if (confirmation) {
+                const updatedTasks = tasks.filter((task) => task !== randomTask);
+                localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+            }
+
+            document.getElementById('taskDisplay').textContent = randomTask;
+        }
+
+        setInterval(displayAndDeleteTask, 50000); 
+
+        const initialTasks = ['Task 1', 'Task 2', 'Task 3'];
+        localStorage.setItem('tasks', JSON.stringify(initialTasks));
+    </script>
+</body>
+</html>

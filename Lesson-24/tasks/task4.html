@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Task 4</h1>
+    <p> Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних факультетів, та кількість студентів кожного з курсів. 
+    </p>
+    <script>
+    const students = [
+      ["студент", "A", "Гріфіндор"],
+      ["студент", "B", "Слизерен"],
+      ["студент", "C", "Гріфіндор"],
+      ["студент", "C", "Пуфіндуй"],
+      ["студент", "B", "Слизерен"],
+      ["студент", "C", "Пуфіндуй"],
+    ];
+    
+    const courseStudentCountMap = new Map();
+    const uniqueFaculties = new Set();
+    
+    students.forEach((student) => {
+      const course = student[1]; 
+      const faculty = student[2];
+    
+      if (courseStudentCountMap.has(course)) {
+        courseStudentCountMap.set(course, courseStudentCountMap.get(course) + 1);
+      } else {
+        courseStudentCountMap.set(course, 1);
+      }
+    
+      uniqueFaculties.add(faculty);
+    });
+    
+    courseStudentCountMap.forEach((count, course) => {
+      console.log(` На курсі ${course} - ${count} студенти(ів).`);
+    });
+    
+    console.log(`Кількість різних факультетів: ${uniqueFaculties.size}`);
+    </script>   
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+    <h1>Task 5</h1>
+            <p> Дано масив показів температур. Підрахувати кількість входжень кожного із показів.
+            </p>
+            <script>
+                // Заокруглити вверх значення та підрахувати кількість різних показів.
+                let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9];
+                let countMap = new Map();
+                
+                temperatures.forEach(temp => {
+                  if (countMap.has(temp)) 
+                    countMap.set(temp, countMap.get(temp) + 1);
+                   else 
+                    countMap.set(temp, 1);
+                });
+                
+                countMap.forEach((count, temp) => {
+                  countMap.set(temp, Math.ceil(count));
+                });
+                
+                countMap.forEach((count, temp) => {
+                  console.log(`Температура ${temp}: кількість таких показників ${count}`);
+                });
+            </script>   
+        </body>
+        </html></p>
+    
+</body>
+</html>
