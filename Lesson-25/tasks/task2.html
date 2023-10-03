@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+</head>
+<body>
+  <h1>Задача 2</h1>
+  <p> Дано Shop  -- клас, що містить список товарів  - масив об’єктів класу Product (назва, ціна, кількість одиниць).
+    Додати можливість ітератора до класу Shop, щоб при ітеруванні для кожного елемента виводився рядок «товар-загальна вартість»
+  </p>
+  <script>
+    class Product {
+      constructor(productData) {
+        Object.assign(this, productData);
+      }
+    }
+
+    class Shop {
+      constructor(productsList) {
+        this.productsList = productsList;
+        this.from = 0;
+        this.to = productsList.length;
+      }
+    
+      [Symbol.iterator]() {
+        let index = this.from;
+    
+        return {
+          next: () => {
+            if (index < this.to) {
+              const product = this.productsList[index];
+              const totalCost = product.price * product.productCount;
+              const result = { value: `${product.title} - ${totalCost}`, done: false };
+              index++;
+              return result;
+            } else {
+              return { done: true };
+            }
+          },
+        };
+      }
+    }
+    
+    const productsList = [
+      new Product({
+        title: 'Necklace',
+        price: 4000,
+        productCount: 2,
+      }),
+      new Product({
+        title: 'Ring',
+        price: 3000,
+        productCount: 1,
+      }),
+      new Product({
+        title: 'Chain',
+        price: 7700,
+        productCount: 1,
+      }),
+    ];
+    
+    const shop1 = new Shop(productsList);
+    
+    const iterator = shop1[Symbol.iterator]();
+    let nextItem = iterator.next();
+    
+    while (!nextItem.done) {
+      console.log(`${nextItem.value}$`);
+      nextItem = iterator.next();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+  <h1>Task 4</h1>
+  <p>  Використовуючи один з АРІ 
+    https://github.com/public-apis/public-apis#animals
+    та функцію fetch організувати завантаження та відображення даних              
+  </p>
+  <p id="cat-fact">Loading cat fact...</p>
+  <script>
+    const apiUrl = "https://cat-fact.herokuapp.com/facts/random";
+    
+    function fetchRandomCatFact() {
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Cats Error.');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const catFact = data.text;
+          const catFactElement = document.getElementById('cat-fact');
+          catFactElement.textContent = "Cat Fact: " + catFact;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
+
+    fetchRandomCatFact();
+
+    /* Дякую Вам, Юлія, за вашу роботу, професійність і терпіння по відношенню до мого коду :)*/
+  </script>   
+</body>
+</html>
